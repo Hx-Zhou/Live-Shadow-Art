@@ -251,11 +251,20 @@ def main() -> None:
     checkpoint = resolve_checkpoint(work_dir, getattr(args, "resume_from_checkpoint", None))
     global_step = 0
     first_epoch = 0
+    resume_micro_step = 0
     if checkpoint:
         LOGGER.info("Resuming from %s", checkpoint)
         accelerator.load_state(str(checkpoint))
         global_step = int(checkpoint.name.split("-")[-1])
         first_epoch = global_step // max(1, updates_per_epoch)
+        resume_micro_step = (
+            global_step % max(1, updates_per_epoch)
+        ) * args.gradient_accumulation_steps
+        LOGGER.info(
+            "Resume position: epoch=%s, micro-batches-to-skip=%s",
+            first_epoch,
+            resume_micro_step,
+        )
 
     if report_to:
         accelerator.init_trackers("longcat_lora_npu", config=vars(args))
@@ -277,7 +286,9 @@ def main() -> None:
     for epoch in range(first_epoch, num_train_epochs):
         if hasattr(train_dataloader.sampler, "set_epoch"):
             train_dataloader.sampler.set_epoch(epoch)
-        for batch in train_dataloader:
+        for batch_index, batch in enumerate(train_dataloader):
+            if epoch == first_epoch and batch_index < resume_micro_step:
+                continue
             image = batch["images"].to(accelerator.device, dtype=weight_dtype, non_blocking=True)
             with torch.no_grad(), accelerator.autocast():
                 latents = vae.encode(image).latent_dist.sample()
