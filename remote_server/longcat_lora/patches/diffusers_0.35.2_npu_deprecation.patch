@@ -1,0 +1,17 @@
+--- a/diffusers/models/transformers/transformer_flux.py
++++ b/diffusers/models/transformers/transformer_flux.py
+@@ -355,13 +355,9 @@ class FluxSingleTransformerBlock(nn.Module):
+         if is_torch_npu_available():
+             from ..attention_processor import FluxAttnProcessor2_0_NPU
+ 
+-            deprecation_message = (
+-                "Defaulting to FluxAttnProcessor2_0_NPU for NPU devices will be removed. Attention processors "
+-                "should be set explicitly using the `set_attn_processor` method."
+-            )
+-            deprecate("npu_processor", "0.34.0", deprecation_message)
++            # diffusers 0.35.2 still carries a deprecation guard whose removal
++            # version is 0.34.0.  Its helper therefore raises before model
++            # construction.  Keep the package's intended NPU processor.
+             processor = FluxAttnProcessor2_0_NPU()
+         else:
+             processor = FluxAttnProcessor()
