@@ -1,0 +1,18 @@
+{
+  "id": "mountain_pass",
+  "kind": "background",
+  "name": "Mountain Pass",
+  "version": "1.0.0",
+  "source": {
+    "provider": "manual",
+    "modelVersion": "studio-raster-v2",
+    "prompt": "traditional Chinese shadow puppet mountain pass, layered ink-wash peaks, moon and pavilion on textured paper",
+    "negativePrompt": "characters, text watermark, photorealistic",
+    "seed": 2026090712,
+    "createdAt": "2026-09-07T08:00:00Z"
+  },
+  "parts": ["mountain_pass.png"],
+  "rig": null,
+  "preview": "mountain_pass.png",
+  "tags": ["demo", "background", "landscape", "studio-raster-v2"]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "jump",
+  "name": "Jump",
+  "durationMs": 850,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "y": 0 },
+        "leg_l": { "rotation": 18 },
+        "leg_r": { "rotation": -18 }
+      }
+    },
+    {
+      "time": 220,
+      "nodes": {
+        "torso": { "y": 18 },
+        "leg_l": { "rotation": 36 },
+        "leg_r": { "rotation": -36 }
+      }
+    },
+    {
+      "time": 480,
+      "nodes": {
+        "torso": { "y": -90 },
+        "leg_l": { "rotation": -18 },
+        "leg_r": { "rotation": 18 }
+      }
+    },
+    {
+      "time": 850,
+      "nodes": {
+        "torso": { "y": 0 },
+        "leg_l": { "rotation": 7 },
+        "leg_r": { "rotation": -7 }
+      }
+    }
+  ]
+}

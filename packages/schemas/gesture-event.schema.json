@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shadow-stage.local/schemas/gesture-event.schema.json",
+  "title": "GestureEvent",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "action", "confidence", "hand", "timestamp"],
+  "properties": {
+    "type": {
+      "const": "gesture_action"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["pinch", "swipe_left", "swipe_right", "raise", "fist", "open_palm"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "hand": {
+      "type": "string",
+      "enum": ["left", "right"]
+    },
+    "timestamp": {
+      "type": "number",
+      "description": "Unix timestamp in milliseconds."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "active": "placeholder-v1",
+  "models": [
+    {
+      "id": "placeholder-v1",
+      "provider": "mock",
+      "base": "manual-placeholder",
+      "lora": null,
+      "checksum": null,
+      "license": "project demo placeholder"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "hit",
+  "name": "Hit",
+  "durationMs": 600,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "rotation": 0, "x": 0 },
+        "head": { "rotation": 0 }
+      }
+    },
+    {
+      "time": 150,
+      "nodes": {
+        "torso": { "rotation": -12, "x": -16 },
+        "head": { "rotation": 14 }
+      }
+    },
+    {
+      "time": 320,
+      "nodes": {
+        "torso": { "rotation": 9, "x": 10 },
+        "head": { "rotation": -10 }
+      }
+    },
+    {
+      "time": 600,
+      "nodes": {
+        "torso": { "rotation": 0, "x": 0 },
+        "head": { "rotation": 0 }
+      }
+    }
+  ]
+}

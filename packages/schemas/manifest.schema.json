@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shadow-stage.local/schemas/manifest.schema.json",
+  "title": "AssetManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "name", "version", "source", "parts", "rig"],
+  "properties": {
+    "id": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": ["character", "background"]
+    },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "modelVersion", "prompt", "seed"],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": ["mock", "cache", "ascend", "manual"]
+        },
+        "modelVersion": { "type": "string" },
+        "prompt": { "type": "string" },
+        "negativePrompt": { "type": "string" },
+        "seed": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "parts": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rig": { "type": ["string", "null"] },
+    "preview": { "type": ["string", "null"] },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

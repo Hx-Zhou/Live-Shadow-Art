@@ -1,0 +1,19 @@
+{
+  "name": "shadow-stage",
+  "version": "0.1.0",
+  "private": true,
+  "description": "光影新生：AI 实时互动皮影戏台",
+  "packageManager": "pnpm@9.15.0",
+  "workspaces": ["web"],
+  "scripts": {
+    "dev:web": "npm --prefix web run dev",
+    "build:web": "npm --prefix web run build",
+    "typecheck:web": "npm --prefix web run typecheck",
+    "install:web": "npm --prefix web install",
+    "dev:server": "uvicorn server.app.main:app --reload --port 8000",
+    "assets:generate": "node scripts/generate-demo-assets.mjs",
+    "check:schemas": "node scripts/check-schemas.mjs",
+    "gen:types": "node scripts/gen-types.mjs",
+    "test": "node scripts/check-schemas.mjs"
+  }
+}

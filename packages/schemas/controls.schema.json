@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shadow-stage.local/schemas/controls.schema.json",
+  "title": "ControlsConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "continuous", "gestures", "keyboardMock"],
+  "properties": {
+    "version": { "type": "string" },
+    "continuous": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/continuousBinding" }
+    },
+    "gestures": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/gestureBinding" }
+    },
+    "keyboardMock": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "$defs": {
+    "continuousBinding": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["source", "target", "smoothing"],
+      "properties": {
+        "source": { "type": "string" },
+        "target": { "type": "string" },
+        "scale": { "$ref": "#/$defs/vector2" },
+        "offset": { "$ref": "#/$defs/vector2" },
+        "range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max"],
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "smoothing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "gestureBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "state", "motion", "cooldownMs", "priority"],
+      "properties": {
+        "action": { "type": "string" },
+        "state": { "type": "string" },
+        "motion": { "type": "string" },
+        "cooldownMs": { "type": "integer", "minimum": 0 },
+        "priority": { "type": "integer" }
+      }
+    },
+    "vector2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" }
+      }
+    }
+  }
+}

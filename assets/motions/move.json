@@ -1,0 +1,32 @@
+{
+  "id": "move",
+  "name": "Move",
+  "durationMs": 600,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "rotation": 0 },
+        "leg_l": { "rotation": 12 },
+        "leg_r": { "rotation": -12 }
+      }
+    },
+    {
+      "time": 300,
+      "nodes": {
+        "torso": { "rotation": 3 },
+        "leg_l": { "rotation": -20 },
+        "leg_r": { "rotation": 20 }
+      }
+    },
+    {
+      "time": 600,
+      "nodes": {
+        "torso": { "rotation": 0 },
+        "leg_l": { "rotation": 12 },
+        "leg_r": { "rotation": -12 }
+      }
+    }
+  ]
+}

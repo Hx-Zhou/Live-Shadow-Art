@@ -1,0 +1,9 @@
+{
+  "modelVersion": "placeholder-v1",
+  "width": 768,
+  "height": 768,
+  "steps": 24,
+  "guidanceScale": 7.5,
+  "lora": "shadow-puppet-style",
+  "fallbackProvider": "cache"
+}

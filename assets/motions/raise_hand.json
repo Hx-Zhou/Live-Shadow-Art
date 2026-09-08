@@ -1,0 +1,29 @@
+{
+  "id": "raise_hand",
+  "name": "Raise Hand",
+  "durationMs": 700,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "upper_arm_r": { "rotation": 18 },
+        "lower_arm_r": { "rotation": -12 }
+      }
+    },
+    {
+      "time": 320,
+      "nodes": {
+        "upper_arm_r": { "rotation": -62 },
+        "lower_arm_r": { "rotation": -30 }
+      }
+    },
+    {
+      "time": 700,
+      "nodes": {
+        "upper_arm_r": { "rotation": 18 },
+        "lower_arm_r": { "rotation": -12 }
+      }
+    }
+  ]
+}

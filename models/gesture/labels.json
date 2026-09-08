@@ -1,0 +1,8 @@
+{
+  "pinch": "attack",
+  "swipe_left": "turn_left",
+  "swipe_right": "turn_right",
+  "raise": "jump",
+  "fist": "hit",
+  "open_palm": "idle"
+}

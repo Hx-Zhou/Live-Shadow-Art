@@ -1,0 +1,18 @@
+{
+  "id": "animal_shadow_v2",
+  "name": "Animal Shadow Puppet",
+  "type": "animal",
+  "canvas": { "width": 640, "height": 720 },
+  "root": "torso",
+  "nodes": [
+    { "id": "torso", "parent": null, "part": "torso.png", "position": { "x": 320, "y": 405 }, "pivot": { "x": 71, "y": 96 }, "rotation": 0, "limits": { "min": -14, "max": 14 }, "zIndex": 20 },
+    { "id": "head", "parent": "torso", "part": "head.png", "position": { "x": 7, "y": -110 }, "pivot": { "x": 56, "y": 110 }, "rotation": 0, "limits": { "min": -28, "max": 28 }, "zIndex": 28 },
+    { "id": "upper_arm_l", "parent": "torso", "part": "upper_arm_l.png", "position": { "x": -58, "y": -58 }, "pivot": { "x": 26, "y": 18 }, "rotation": -15, "limits": { "min": -45, "max": 65 }, "zIndex": 14 },
+    { "id": "lower_arm_l", "parent": "upper_arm_l", "part": "lower_arm_l.png", "position": { "x": 0, "y": 101 }, "pivot": { "x": 24, "y": 17 }, "rotation": -6, "limits": { "min": -55, "max": 55 }, "zIndex": 13 },
+    { "id": "upper_arm_r", "parent": "torso", "part": "upper_arm_r.png", "position": { "x": 58, "y": -58 }, "pivot": { "x": 26, "y": 18 }, "rotation": 15, "limits": { "min": -65, "max": 45 }, "zIndex": 16 },
+    { "id": "lower_arm_r", "parent": "upper_arm_r", "part": "lower_arm_r.png", "position": { "x": 0, "y": 101 }, "pivot": { "x": 24, "y": 17 }, "rotation": 6, "limits": { "min": -55, "max": 55 }, "zIndex": 15 },
+    { "id": "leg_l", "parent": "torso", "part": "leg_l.png", "position": { "x": -38, "y": 80 }, "pivot": { "x": 29, "y": 18 }, "rotation": 12, "limits": { "min": -45, "max": 50 }, "zIndex": 12 },
+    { "id": "leg_r", "parent": "torso", "part": "leg_r.png", "position": { "x": 38, "y": 80 }, "pivot": { "x": 29, "y": 18 }, "rotation": -12, "limits": { "min": -50, "max": 45 }, "zIndex": 11 },
+    { "id": "prop", "parent": "lower_arm_l", "part": "prop.png", "position": { "x": 0, "y": 92 }, "pivot": { "x": 37, "y": 149 }, "rotation": -8, "limits": { "min": -40, "max": 40 }, "zIndex": 24 }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://shadow-stage.local/schemas/script-act.schema.json",
+  "title": "ScriptAct",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "actor", "action", "durationMs"],
+  "properties": {
+    "id": { "type": "string" },
+    "actor": { "type": "string" },
+    "action": { "type": "string" },
+    "durationMs": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "dialogue": { "type": "string" },
+    "background": { "type": "string" }
+  }
+}

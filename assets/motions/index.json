@@ -1,0 +1,13 @@
+{
+  "motions": [
+    "idle",
+    "move",
+    "turn_left",
+    "turn_right",
+    "raise_hand",
+    "walk",
+    "jump",
+    "attack",
+    "hit"
+  ]
+}

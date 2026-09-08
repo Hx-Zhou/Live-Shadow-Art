@@ -1,0 +1,29 @@
+{
+  "id": "turn_left",
+  "name": "Turn Left",
+  "durationMs": 500,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "rotation": 0, "scaleX": 1 },
+        "head": { "rotation": 0 }
+      }
+    },
+    {
+      "time": 220,
+      "nodes": {
+        "torso": { "rotation": -10, "scaleX": 0.12 },
+        "head": { "rotation": -16 }
+      }
+    },
+    {
+      "time": 500,
+      "nodes": {
+        "torso": { "rotation": 0, "scaleX": -1 },
+        "head": { "rotation": 0 }
+      }
+    }
+  ]
+}

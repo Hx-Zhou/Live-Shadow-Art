@@ -1,0 +1,40 @@
+{
+  "id": "attack",
+  "name": "Attack",
+  "durationMs": 650,
+  "loop": false,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "upper_arm_r": { "rotation": 18 },
+        "lower_arm_r": { "rotation": -12 },
+        "prop": { "rotation": 8 }
+      }
+    },
+    {
+      "time": 250,
+      "nodes": {
+        "upper_arm_r": { "rotation": -52 },
+        "lower_arm_r": { "rotation": -46 },
+        "prop": { "rotation": -18 }
+      }
+    },
+    {
+      "time": 430,
+      "nodes": {
+        "upper_arm_r": { "rotation": 72 },
+        "lower_arm_r": { "rotation": 34 },
+        "prop": { "rotation": 28 }
+      }
+    },
+    {
+      "time": 650,
+      "nodes": {
+        "upper_arm_r": { "rotation": 18 },
+        "lower_arm_r": { "rotation": -12 },
+        "prop": { "rotation": 8 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "paper_curtain",
+  "kind": "background",
+  "name": "Paper Curtain",
+  "version": "1.0.0",
+  "source": {
+    "provider": "manual",
+    "modelVersion": "studio-raster-v2",
+    "prompt": "traditional Chinese shadow puppet proscenium, crimson velvet curtains, lacquered wood frame, warm handmade paper",
+    "negativePrompt": "characters, text watermark, photorealistic",
+    "seed": 2026090711,
+    "createdAt": "2026-09-07T08:00:00Z"
+  },
+  "parts": ["paper_curtain.png"],
+  "rig": null,
+  "preview": "paper_curtain.png",
+  "tags": ["demo", "background", "stage", "studio-raster-v2"]
+}

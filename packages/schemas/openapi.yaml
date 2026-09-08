@@ -1,0 +1,235 @@
+openapi: 3.1.0
+info:
+  title: 光影新生生成与资产服务 API
+  version: 0.1.0
+  description: AI 皮影贴图生成、任务进度、资产读取与可选剧本生成接口。
+servers:
+  - url: http://127.0.0.1:8000
+paths:
+  /health:
+    get:
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        "200":
+          description: Service health
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /api/textures/generate:
+    post:
+      summary: Start a texture generation task
+      operationId: generateTexture
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TextureGenerateRequest"
+      responses:
+        "202":
+          description: Task accepted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStatus"
+  /api/tasks/{task_id}:
+    get:
+      summary: Read generation task status
+      operationId: getTask
+      parameters:
+        - name: task_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TaskStatus"
+        "404":
+          description: Task not found
+  /api/assets/{asset_id}:
+    get:
+      summary: Read asset metadata by id
+      operationId: getAsset
+      parameters:
+        - name: asset_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Asset metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AssetResponse"
+        "404":
+          description: Asset not found
+  /api/script/generate:
+    post:
+      summary: Generate a short optional script
+      operationId: generateScript
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ScriptGenerateRequest"
+      responses:
+        "200":
+          description: Script acts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScriptGenerateResponse"
+  /ws/generation/{sid}:
+    get:
+      summary: WebSocket generation progress stream
+      operationId: generationProgressSocket
+      parameters:
+        - name: sid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "101":
+          description: WebSocket upgrade
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required: [ok, provider]
+      properties:
+        ok:
+          type: boolean
+        provider:
+          type: string
+          enum: [mock, cache, ascend]
+    TextureGenerateRequest:
+      type: object
+      additionalProperties: false
+      required: [kind, style, prompt]
+      properties:
+        kind:
+          type: string
+          enum: [character, background]
+        style:
+          type: string
+          example: traditional_shadow_puppet
+        prompt:
+          type: string
+        negativePrompt:
+          type: string
+        rigType:
+          type: string
+          enum: [humanoid, animal]
+        palette:
+          type: array
+          items:
+            type: string
+        seed:
+          type: integer
+        count:
+          type: integer
+          minimum: 1
+          maximum: 4
+          default: 1
+    TaskAccepted:
+      type: object
+      additionalProperties: false
+      required: [taskId, status]
+      properties:
+        taskId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+    TaskStatus:
+      type: object
+      additionalProperties: false
+      required: [taskId, status, progress]
+      properties:
+        taskId:
+          type: string
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed]
+        progress:
+          type: number
+          minimum: 0
+          maximum: 1
+        message:
+          type: string
+        assetId:
+          type: string
+        error:
+          type: string
+    AssetResponse:
+      type: object
+      additionalProperties: false
+      required: [id, kind, name, baseUrl, manifestUrl]
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+          enum: [character, background]
+        name:
+          type: string
+        baseUrl:
+          type: string
+        manifestUrl:
+          type: string
+        previewUrl:
+          type: string
+    ScriptGenerateRequest:
+      type: object
+      additionalProperties: false
+      required: [theme, actors, durationSeconds]
+      properties:
+        theme:
+          type: string
+        actors:
+          type: array
+          items:
+            type: string
+        durationSeconds:
+          type: integer
+          minimum: 10
+          maximum: 300
+    ScriptGenerateResponse:
+      type: object
+      additionalProperties: false
+      required: [acts]
+      properties:
+        acts:
+          type: array
+          items:
+            $ref: "#/components/schemas/ScriptAct"
+    ScriptAct:
+      type: object
+      additionalProperties: false
+      required: [id, actor, action, durationMs]
+      properties:
+        id:
+          type: string
+        actor:
+          type: string
+        action:
+          type: string
+        durationMs:
+          type: integer
+          minimum: 0
+        dialogue:
+          type: string
+        background:
+          type: string

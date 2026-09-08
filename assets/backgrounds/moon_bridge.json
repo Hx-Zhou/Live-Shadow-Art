@@ -1,0 +1,18 @@
+{
+  "id": "moon_bridge",
+  "kind": "background",
+  "name": "Moon Bridge",
+  "version": "1.0.0",
+  "source": {
+    "provider": "manual",
+    "modelVersion": "studio-raster-v2",
+    "prompt": "traditional Chinese shadow puppet moon bridge, teal night paper, lanterns and crescent moon, theatrical depth",
+    "negativePrompt": "characters, text watermark, photorealistic",
+    "seed": 2026090713,
+    "createdAt": "2026-09-07T08:00:00Z"
+  },
+  "parts": ["moon_bridge.png"],
+  "rig": null,
+  "preview": "moon_bridge.png",
+  "tags": ["demo", "background", "night", "studio-raster-v2"]
+}

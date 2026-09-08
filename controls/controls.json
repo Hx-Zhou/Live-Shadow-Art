@@ -1,0 +1,79 @@
+{
+  "$schema": "../packages/schemas/controls.schema.json",
+  "version": "0.1.0",
+  "continuous": [
+    {
+      "source": "palm",
+      "target": "root.position",
+      "scale": { "x": 720, "y": 360 },
+      "offset": { "x": 0, "y": 0 },
+      "smoothing": 0.22
+    },
+    {
+      "source": "direction",
+      "target": "head.rotation",
+      "scale": { "x": 0, "y": 18 },
+      "offset": { "x": 0, "y": 0 },
+      "smoothing": 0.35
+    },
+    {
+      "source": "pinchStrength",
+      "target": "upper_arm_r.rotation",
+      "range": { "min": -42, "max": 36 },
+      "smoothing": 0.3
+    }
+  ],
+  "gestures": [
+    {
+      "action": "pinch",
+      "state": "ATTACK",
+      "motion": "attack",
+      "cooldownMs": 700,
+      "priority": 80
+    },
+    {
+      "action": "swipe_left",
+      "state": "TURN",
+      "motion": "turn_left",
+      "cooldownMs": 500,
+      "priority": 60
+    },
+    {
+      "action": "swipe_right",
+      "state": "TURN",
+      "motion": "turn_right",
+      "cooldownMs": 500,
+      "priority": 60
+    },
+    {
+      "action": "raise",
+      "state": "JUMP",
+      "motion": "jump",
+      "cooldownMs": 800,
+      "priority": 70
+    },
+    {
+      "action": "fist",
+      "state": "HIT",
+      "motion": "hit",
+      "cooldownMs": 900,
+      "priority": 75
+    },
+    {
+      "action": "open_palm",
+      "state": "IDLE",
+      "motion": "idle",
+      "cooldownMs": 250,
+      "priority": 20
+    }
+  ],
+  "keyboardMock": {
+    "a": "swipe_left",
+    "d": "swipe_right",
+    "w": "raise",
+    "j": "pinch",
+    "k": "fist",
+    "l": "open_palm",
+    "s": "idle"
+  }
+}

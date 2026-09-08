@@ -1,0 +1,35 @@
+{
+  "characters": [
+    {
+      "id": "hero_rabbit",
+      "name": "Hero Rabbit",
+      "type": "humanoid",
+      "basePath": "/characters/hero_rabbit"
+    },
+    {
+      "id": "forest_fox",
+      "name": "Forest Fox",
+      "type": "animal",
+      "basePath": "/characters/forest_fox"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "paper_curtain",
+      "name": "Paper Curtain",
+      "path": "/backgrounds/paper_curtain.png"
+    },
+    {
+      "id": "mountain_pass",
+      "name": "Mountain Pass",
+      "path": "/backgrounds/mountain_pass.png"
+    },
+    {
+      "id": "moon_bridge",
+      "name": "Moon Bridge",
+      "path": "/backgrounds/moon_bridge.png"
+    }
+  ],
+  "defaultCharacter": "hero_rabbit",
+  "defaultBackground": "paper_curtain"
+}

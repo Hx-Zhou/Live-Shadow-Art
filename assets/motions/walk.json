@@ -1,0 +1,38 @@
+{
+  "id": "walk",
+  "name": "Walk",
+  "durationMs": 900,
+  "loop": true,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "y": 0 },
+        "leg_l": { "rotation": -26 },
+        "leg_r": { "rotation": 22 },
+        "upper_arm_l": { "rotation": 22 },
+        "upper_arm_r": { "rotation": -22 }
+      }
+    },
+    {
+      "time": 450,
+      "nodes": {
+        "torso": { "y": -7 },
+        "leg_l": { "rotation": 24 },
+        "leg_r": { "rotation": -24 },
+        "upper_arm_l": { "rotation": -24 },
+        "upper_arm_r": { "rotation": 24 }
+      }
+    },
+    {
+      "time": 900,
+      "nodes": {
+        "torso": { "y": 0 },
+        "leg_l": { "rotation": -26 },
+        "leg_r": { "rotation": 22 },
+        "upper_arm_l": { "rotation": 22 },
+        "upper_arm_r": { "rotation": -22 }
+      }
+    }
+  ]
+}

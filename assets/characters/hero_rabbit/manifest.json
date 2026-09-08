@@ -1,0 +1,28 @@
+{
+  "id": "hero_rabbit",
+  "kind": "character",
+  "name": "Hero Rabbit",
+  "version": "1.0.0",
+  "source": {
+    "provider": "manual",
+    "modelVersion": "studio-raster-v2",
+    "prompt": "traditional Chinese shadow puppet rabbit general, articulated carved leather parts, vermilion and gold paper texture, theatrical silhouette",
+    "negativePrompt": "photorealistic, blurry, low contrast",
+    "seed": 2026090701,
+    "createdAt": "2026-09-07T08:00:00Z"
+  },
+  "parts": [
+    "head.png",
+    "torso.png",
+    "upper_arm_l.png",
+    "lower_arm_l.png",
+    "upper_arm_r.png",
+    "lower_arm_r.png",
+    "leg_l.png",
+    "leg_r.png",
+    "prop.png"
+  ],
+  "rig": "../../rigs/humanoid.json",
+  "preview": "preview.png",
+  "tags": ["demo", "humanoid", "shadow-puppet", "studio-raster-v2"]
+}

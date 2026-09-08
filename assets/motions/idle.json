@@ -1,0 +1,35 @@
+{
+  "id": "idle",
+  "name": "Idle",
+  "durationMs": 1200,
+  "loop": true,
+  "keyframes": [
+    {
+      "time": 0,
+      "nodes": {
+        "torso": { "rotation": -1, "y": 0 },
+        "head": { "rotation": 2 },
+        "upper_arm_l": { "rotation": -18 },
+        "upper_arm_r": { "rotation": 18 }
+      }
+    },
+    {
+      "time": 600,
+      "nodes": {
+        "torso": { "rotation": 1, "y": -4 },
+        "head": { "rotation": -2 },
+        "upper_arm_l": { "rotation": -14 },
+        "upper_arm_r": { "rotation": 14 }
+      }
+    },
+    {
+      "time": 1200,
+      "nodes": {
+        "torso": { "rotation": -1, "y": 0 },
+        "head": { "rotation": 2 },
+        "upper_arm_l": { "rotation": -18 },
+        "upper_arm_r": { "rotation": 18 }
+      }
+    }
+  ]
+}
