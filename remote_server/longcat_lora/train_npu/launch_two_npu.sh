@@ -18,7 +18,8 @@ source /usr/local/Ascend/cann-8.5.2/set_env.sh
 set -u
 unset ASCEND_RT_VISIBLE_DEVICES
 
-export PYTHONPATH="${training_root}/python_packages:${training_root}/src/LongCat-Image:${training_root}/train_npu"
+cann_pythonpath="${PYTHONPATH:-}"
+export PYTHONPATH="${training_root}/python_packages:${training_root}/src/LongCat-Image:${training_root}/train_npu:${cann_pythonpath}"
 export TOKENIZERS_PARALLELISM=false
 export HCCL_CONNECT_TIMEOUT=1200
 export HCCL_EXEC_TIMEOUT=7200
