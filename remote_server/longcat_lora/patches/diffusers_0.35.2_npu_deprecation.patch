@@ -1,6 +1,6 @@
 --- a/diffusers/models/transformers/transformer_flux.py
 +++ b/diffusers/models/transformers/transformer_flux.py
-@@ -355,13 +355,9 @@ class FluxSingleTransformerBlock(nn.Module):
+@@ -355,11 +355,9 @@ class FluxSingleTransformerBlock(nn.Module):
          if is_torch_npu_available():
              from ..attention_processor import FluxAttnProcessor2_0_NPU
  
