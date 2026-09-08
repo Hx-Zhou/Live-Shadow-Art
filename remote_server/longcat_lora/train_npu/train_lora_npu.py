@@ -13,11 +13,13 @@ import json
 import logging
 import math
 import os
+import random
 import shutil
 import sys
 import time
 from pathlib import Path
 
+import numpy as np
 import torch
 import yaml
 from accelerate import Accelerator
@@ -106,6 +108,23 @@ def npu_memory_gib() -> tuple[float, float]:
 def write_jsonl(path: Path, payload: dict) -> None:
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(payload, ensure_ascii=False) + "\n")
+
+
+def restore_random_states(checkpoint: Path, process_index: int, device: torch.device) -> list[str]:
+    """Restore CPU/Python RNG and, when present, the NPU-specific RNG state."""
+    restored = []
+    generic_path = checkpoint / f"random_states_{process_index}.pkl"
+    if generic_path.is_file():
+        states = torch.load(generic_path, map_location="cpu", weights_only=False)
+        random.setstate(states["random_state"])
+        np.random.set_state(states["numpy_random_seed"])
+        torch.set_rng_state(states["torch_manual_seed"])
+        restored.extend(["python", "numpy", "torch_cpu"])
+    npu_path = checkpoint / f"npu_rng_state_{process_index}.pt"
+    if npu_path.is_file():
+        torch.npu.set_rng_state(torch.load(npu_path, map_location="cpu", weights_only=False), device)
+        restored.append("torch_npu")
+    return restored
 
 
 def main() -> None:
@@ -244,9 +263,10 @@ def main() -> None:
 
     accelerator.register_save_state_pre_hook(save_model_hook)
     accelerator.register_load_state_pre_hook(load_model_hook)
-    transformer, optimizer, train_dataloader, lr_scheduler = accelerator.prepare(
-        transformer, optimizer, train_dataloader, lr_scheduler
-    )
+    # MultiResolutionDistributedSampler already partitions one same-shape
+    # global batch across HCCL ranks.  Passing the loader to Accelerate would
+    # shard it a second time and halve every epoch.
+    transformer, optimizer, lr_scheduler = accelerator.prepare(transformer, optimizer, lr_scheduler)
 
     checkpoint = resolve_checkpoint(work_dir, getattr(args, "resume_from_checkpoint", None))
     global_step = 0
@@ -255,6 +275,8 @@ def main() -> None:
     if checkpoint:
         LOGGER.info("Resuming from %s", checkpoint)
         accelerator.load_state(str(checkpoint))
+        restored_rng = restore_random_states(checkpoint, accelerator.process_index, accelerator.device)
+        LOGGER.info("Restored RNG components: %s", ",".join(restored_rng) or "none")
         global_step = int(checkpoint.name.split("-")[-1])
         first_epoch = global_step // max(1, updates_per_epoch)
         resume_micro_step = (
@@ -407,6 +429,10 @@ def main() -> None:
                         shutil.rmtree(temp_dir)
                     temp_dir.mkdir(parents=True)
                 accelerator.wait_for_everyone()
+                torch.save(
+                    torch.npu.get_rng_state(accelerator.device),
+                    temp_dir / f"npu_rng_state_{accelerator.process_index}.pt",
+                )
                 accelerator.save_state(str(temp_dir))
                 accelerator.wait_for_everyone()
                 if accelerator.is_main_process:
