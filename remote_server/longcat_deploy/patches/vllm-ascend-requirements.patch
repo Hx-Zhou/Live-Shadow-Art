@@ -1,0 +1,14 @@
+diff --git a/requirements.txt b/requirements.txt
+index 82cca9e..4798345 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -14,7 +14,7 @@ setuptools-scm>=8
+ torch==2.9.0
+ torchvision
+ wheel
+-xgrammar>=0.1.30
++xgrammar>=0.1.29 # NPU overlay: align with the exact vLLM 0.16.0 core pin
+ pandas-stubs
+ opencv-python-headless<=4.11.0.86 # Required to avoid numpy version conflict with vllm
+ compressed_tensors>=0.11.0
+

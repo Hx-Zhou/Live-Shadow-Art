@@ -1,0 +1,18 @@
+[
+  {
+    "id": "delivery_character_nezha",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "哪吒少年武将皮影角色贴图，单个角色，严格左侧身，完整全身从发髻到双脚全部可见，纯暖白无纹理背景，无边框无角花。双臂向两侧展开并与躯干保留清楚空隙，双腿分开不交叉，双手完整可见；左手单独持乾坤圈，右手单独持火尖枪，道具与身体互不重叠。红、黑、金配色，传统陕西皮影，镂空透光牛皮，粗黑闭合轮廓，平面正投影视图，关节清楚，适合骨骼拆分。traditional Chinese shadow-puppet character asset, one figure only, strict side view, full body, isolated limbs and props, articulation-ready, clean silhouette, flat warm-white background",
+    "negative_prompt": "photorealistic, 3d render, glossy plastic, front view, cropped body, close-up, missing limb, extra limb, fused limbs, overlapping limbs, hidden hands, hidden feet, malformed anatomy, duplicate body, prop touching torso, complex background, text, numbers, logo, watermark, border, frame, corner ornament, 写实摄影，三维塑料质感，正面，主体裁切，缺肢，多肢，四肢粘连，肢体重叠，手脚遮挡，道具粘连身体，复杂背景，文字，数字，水印，边框，角花"
+  },
+  {
+    "id": "delivery_scene_mount_hua_empty",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "空无一人的华山云海皮影戏场景背景底图，只画环境，绝对不要人物、角色、演员、皮影偶、动物或雕像。远层青黑险峰，中层金色云海，近层松枝只位于左右两侧；画面中央百分之六十为开阔、干净、低细节的表演区，没有任何主体或遮挡。红、黑、金、青绿配色，传统中国皮影与镂空剪纸质感，清楚的远中近三层，横向宽幅，无舞台边框，无文字无牌匾无标志。empty environment background plate only, absolutely no people, no characters, no figures, no actors, no puppets, no animals, central 60 percent open performance area, layered Chinese shadow-puppet paper-cut scenery, wide composition",
+    "negative_prompt": "people, person, human, humans, character, characters, figure, figures, actor, actors, performer, performers, crowd, audience, puppet, puppets, animal, animals, statue, statues, face, body, silhouette of a person, central subject, central obstruction, text, letters, numbers, sign, signage, plaque, logo, watermark, border, frame, photorealistic, 3d render, glossy plastic, 人物，人类，角色，演员，观众，皮影偶，动物，雕像，人脸，身体，中央主体，中央遮挡，文字，数字，招牌，牌匾，标志，水印，边框，写实摄影，三维塑料质感"
+  }
+]

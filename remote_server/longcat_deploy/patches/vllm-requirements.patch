@@ -1,0 +1,21 @@
+diff --git a/requirements/common.txt b/requirements/common.txt
+index 297447c..ef46314 100644
+--- a/requirements/common.txt
++++ b/requirements/common.txt
+@@ -32,7 +32,7 @@ pyzmq >= 25.0.0
+ msgspec
+ gguf >= 0.17.0
+ mistral_common[image] >= 1.9.0
+-opencv-python-headless >= 4.13.0    # required for video IO
++opencv-python-headless >= 4.11.0.86 # NPU overlay: vLLM-Ascend/CANN 8.5 uses the NumPy 1.x-compatible build
+ pyyaml
+ six>=1.16.0; python_version > '3.11' # transitive dependency of pandas that needs to be the latest version for python 3.12
+ setuptools>=77.0.3,<81.0.0; python_version > '3.11' # Setuptools is used by triton, we need to ensure a modern version for 3.12+ so that it does not try to import distutils, which was removed in 3.12
+@@ -52,4 +52,4 @@ anthropic >= 0.71.0
+ model-hosting-container-standards >= 0.1.13, < 1.0.0
+ mcp
+ grpcio
+-grpcio-reflection
+\ No newline at end of file
++grpcio-reflection
+

@@ -6,7 +6,13 @@ __pycache__/
 .venv/
 venv/
 .env
+.env.*
+!.env.example
 .DS_Store
+
+# Credentials must never enter Git.
+*.pem
+*.key
 
 # Large model weights and generated runtime data
 models/generation/sd15/*
@@ -30,3 +36,13 @@ server/data/
 *.onnx
 *.pt
 *.pth
+*.bin
+
+# Remote-server caches and generated artifacts
+hf-cache/
+pip-cache/
+wheels/
+results/
+logs/
+*.log
+*.pid

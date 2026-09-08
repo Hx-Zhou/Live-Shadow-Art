@@ -1,0 +1,73 @@
+[
+  {
+    "id": "character_01_sun_wukong",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "孙悟空，金冠、红金甲、黑色描边，严格侧身全身，单手持金箍棒，金箍棒与身体分离，双腿不交叉。traditional Chinese shadow-puppet cutout, full body strict side view, head-to-toe visible, arms and legs clearly separated from torso, visible joints, clean silhouette, perforated translucent leather, red gold and black palette, flat colors, plain warm ivory background, centered"
+  },
+  {
+    "id": "character_02_mulan",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "花木兰女将，红色短披风、传统札甲，一手前伸持剑、一手向后，手臂与躯干留有清楚空隙。traditional Chinese shadow-puppet cutout, full body strict side view, head-to-toe visible, arms and legs clearly separated from torso, visible joints, clean silhouette, perforated translucent leather, red gold and black palette, flat colors, plain warm ivory background, centered"
+  },
+  {
+    "id": "character_03_scholar_official",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "传统老生文官，长须、黑帽、金黑纹样，宽袖但双手可见，折扇与身体不重叠。traditional Chinese shadow-puppet cutout, full body strict side view, head-to-toe visible, arms and legs clearly separated from torso, visible joints, clean silhouette, perforated translucent leather, red gold and black palette, flat colors, plain warm ivory background, centered"
+  },
+  {
+    "id": "character_04_nezha",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "哪吒少年武将，双丸子头，乾坤圈和火尖枪轮廓彼此独立，双臂展开、双腿分离。traditional Chinese shadow-puppet cutout, full body strict side view, head-to-toe visible, arms and legs clearly separated from torso, visible joints, clean silhouette, perforated translucent leather, red gold and black palette, flat colors, plain warm ivory background, centered"
+  },
+  {
+    "id": "character_05_jade_rabbit",
+    "category": "character",
+    "width": 1024,
+    "height": 1024,
+    "prompt": "玉兔拟人角色，完整兔耳，红金短袄，侧身持药杵，手、前臂和道具不粘连。traditional Chinese shadow-puppet cutout, full body strict side view, head-to-toe visible, arms and legs clearly separated from torso, visible joints, clean silhouette, perforated translucent leather, red gold and black palette, flat colors, plain warm ivory background, centered"
+  },
+  {
+    "id": "scene_01_moon_palace",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "月宫与桂树，云纹只位于画面两侧，舞台中央保持开阔。traditional Chinese shadow-puppet stage background, layered paper-cut silhouettes, red gold black and muted teal, translucent leather texture, wide 16:9 composition, foreground middle-ground and background separated, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong backlight"
+  },
+  {
+    "id": "scene_02_mount_hua",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "华山险峰，远山、云海、近景松枝三个明确层次，中央山道留空。traditional Chinese shadow-puppet stage background, layered paper-cut silhouettes, red gold black and muted teal, translucent leather texture, wide 16:9 composition, foreground middle-ground and background separated, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong backlight"
+  },
+  {
+    "id": "scene_03_ancient_city",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "古城门夜景，城墙位于远层，灯笼位于画面两侧，中央不遮挡。traditional Chinese shadow-puppet stage background, layered paper-cut silhouettes, red gold black and muted teal, translucent leather texture, wide 16:9 composition, foreground middle-ground and background separated, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong backlight"
+  },
+  {
+    "id": "scene_04_watertown",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "江南水乡，远景房屋、中层拱桥、近景芦苇，中央水面留出角色表演区。traditional Chinese shadow-puppet stage background, layered paper-cut silhouettes, red gold black and muted teal, translucent leather texture, wide 16:9 composition, foreground middle-ground and background separated, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong backlight"
+  },
+  {
+    "id": "scene_05_general_mansion",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "将军府庭院，远景屋檐、中层屏风、近景廊柱，中央空地留空。traditional Chinese shadow-puppet stage background, layered paper-cut silhouettes, red gold black and muted teal, translucent leather texture, wide 16:9 composition, foreground middle-ground and background separated, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong backlight"
+  }
+]
+

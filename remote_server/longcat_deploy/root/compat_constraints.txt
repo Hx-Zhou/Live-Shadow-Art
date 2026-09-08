@@ -1,0 +1,21 @@
+# Runtime pins that keep the official vLLM 0.16.0 / vLLM-Ascend verified
+# commit / vLLM-Omni 0.16.0 line on one dependency ABI.
+numpy==1.26.4
+torch==2.9.0
+torchvision==0.24.0
+torchaudio==2.9.0
+torch-npu==2.9.0
+triton-ascend==3.2.0
+transformers==4.57.6
+diffusers==0.39.0
+tokenizers==0.22.2
+huggingface-hub==0.36.2
+xgrammar==0.1.29
+opencv-python-headless==4.11.0.86
+fastapi==0.123.10
+starlette==0.50.0
+prometheus-fastapi-instrumentator==7.1.0
+grpcio==1.78.0
+grpcio-reflection==1.78.0
+grpcio-tools==1.78.0
+protobuf==6.33.6

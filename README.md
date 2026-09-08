@@ -12,6 +12,7 @@ AI 实时互动皮影戏台的协作工程骨架。
 - `models/`：模型权重、标签、配置和评测说明，不提交大文件。
 - `docs/`：部署、协议、评测和演示文档。
 - `tests/`：跨模块契约与回放测试。
+- `remote_server/`：远端昇腾服务器的可审计代码快照及兼容补丁。
 
 ## 快速启动
 
@@ -54,6 +55,12 @@ PROVIDER=mock    # 固定 Mock 结果，适合前端开发
 PROVIDER=cache   # 从已审核角色/背景资产读取
 PROVIDER=ascend  # 预留昇腾推理接入点
 ```
+
+## 远端昇腾服务器代码
+
+服务器实际运行代码位于 [`remote_server/`](remote_server/README.md)。这是从华为云 ModelArts 服务器 `/home/ma-user/work/longcat_deploy` 获取的代码快照，运行与维护需要使用项目持有者保管的 SSH 私钥访问服务器。
+
+仓库不保存 `KeyPair-2133.pem`、模型权重、虚拟环境、缓存和生成结果。LongCat-Image 已在 2 × Ascend 910B3 上完成 BF16、50 steps、guidance 4.0、TP=2 的真实推理验证；后续微调不得覆盖这一稳定部署。
 
 ## 协作边界
 

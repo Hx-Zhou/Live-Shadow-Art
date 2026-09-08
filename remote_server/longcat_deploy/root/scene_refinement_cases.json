@@ -1,0 +1,10 @@
+[
+  {
+    "id": "final_scene_mount_hua_full_bleed",
+    "category": "scene",
+    "width": 1024,
+    "height": 576,
+    "prompt": "华山云海横版游戏场景背景原画，二维平面画稿，画面内容一直铺满到四条边缘，不是剧场，不是舞台，不是布景照片。空无一人，只画自然环境：远处青黑险峰，中景金色云海，左右边缘各有少量松枝；下方中央保留宽阔、干净、低细节的浅金色地面区域，供角色叠加。传统中国皮影艺术和镂空剪纸美术风格，红黑金青绿配色，远中近三层清楚，full bleed edge-to-edge 2D background artwork, environment only, empty central foreground, no subject",
+    "negative_prompt": "stage, theater, theatre, proscenium, curtain, curtains, lighting rig, stage light, spotlight, auditorium, audience, border, frame, panel, screen, display, people, person, human, character, figure, actor, performer, crowd, puppet, animal, statue, face, body, central subject, central obstruction, text, letters, numbers, sign, plaque, logo, watermark, photorealistic, photo, 3d render, 舞台，剧场，戏台，帷幕，幕布，灯架，射灯，观众席，边框，画框，屏幕，人物，角色，演员，观众，皮影偶，动物，雕像，人脸，中央主体，中央遮挡，文字，数字，牌匾，水印，摄影，三维"
+  }
+]
