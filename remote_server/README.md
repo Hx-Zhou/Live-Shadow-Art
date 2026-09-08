@@ -18,6 +18,7 @@ ssh -o StrictHostKeyChecking=no -i KeyPair-2133.pem \
 ## 快照范围
 
 - `longcat_deploy/root/`：远端工作目录下的自研部署、验证和批量生成脚本。
+- `longcat_deploy/root/api_service/`：真实 NPU 模型的持久 worker 与队列式 HTTP API。
 - `longcat_deploy/project/`：提示词、测试、基准工具和服务器执行说明。
 - `longcat_deploy/patches/`：对固定上游版本所做的本地兼容补丁。
 - `longcat_deploy/UPSTREAM_VERSIONS.md`：服务器上三个上游仓库的固定提交号。
@@ -28,3 +29,5 @@ ssh -o StrictHostKeyChecking=no -i KeyPair-2133.pem \
 
 此目录是服务器代码的可审计快照。服务器仍是实际 NPU 运行环境；在本地修改代码后，应先审查差异，再通过 SSH 同步到独立测试目录。不要直接覆盖服务器上已验证通过的稳定部署。
 
+组员调用模型时应按 [`longcat_deploy/API使用说明.md`](longcat_deploy/API使用说明.md) 建立 SSH
+隧道。API 默认不监听公网地址，仓库不提供也不保存真实私钥或令牌。

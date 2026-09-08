@@ -60,6 +60,10 @@ PROVIDER=ascend  # 预留昇腾推理接入点
 
 服务器实际运行代码位于 [`remote_server/`](remote_server/README.md)。这是从华为云 ModelArts 服务器 `/home/ma-user/work/longcat_deploy` 获取的代码快照，运行与维护需要使用项目持有者保管的 SSH 私钥访问服务器。
 
+远端模型已封装为单 worker 队列式 API。组员应使用 SSH 本地端口转发访问，具体请求格式、
+提示词模板和下载方式见 [`remote_server/longcat_deploy/API使用说明.md`](remote_server/longcat_deploy/API使用说明.md)。
+服务默认只监听服务器 `127.0.0.1:8010`，不应直接暴露在公网。
+
 仓库不保存 `KeyPair-2133.pem`、模型权重、虚拟环境、缓存和生成结果。LongCat-Image 已在 2 × Ascend 910B3 上完成 BF16、50 steps、guidance 4.0、TP=2 的真实推理验证；后续微调不得覆盖这一稳定部署。
 
 ## 协作边界
