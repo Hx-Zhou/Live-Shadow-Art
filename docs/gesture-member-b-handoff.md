@@ -38,9 +38,11 @@ SDK 源码：`modules/gesture-b/web/src/gesture/`。模块内部 `schemas/` 仅�
 
 ## 实验状态
 
-P01/P02 训练，P03 验证，P04 做过早期测试；后续门槛/L2 比较未使用 P04 调参。P03 门槛 0.70、L2=0 的六类 Macro-F1 为 0.4966，None 被逐帧识别为动作比例为 20%，尚未达标；该比例不是每分钟误触次数。
+最新模型用 P01/P02/P05/P06 的 3268 帧训练，P03 的 736 帧验证；P04 曾做早期测试，本轮未评测。P03 门槛 0.70 时六类 Macro-F1 为 0.6972、正确率 76.63%、None 逐帧误判 1/245（0.41%）；门槛 0.75 时分别为 0.6630、75.00%、0/245。握拳和单指仍有明显漏识别，未完成验收。P03 多次用于模型选择，不能视为独立测试。
 
-默认仍为规则基线。`models/gesture/experimental/` 包含候选配置和汇总指标，不包含权重或逐帧数据。真实 JSONL、prepared、parity、训练快照和模型权重通过团队单独约定的渠道共享。
+默认仍为规则基线。前端“加载 MLP 模型”选择 `modules/gesture-b/models/gesture/experimental/p06-2026-09-09/model.json` 即可试用最新模型；默认门槛为 0.75，加载文件不会改为 0.70。保持本地服务运行，否则 Worker 无法加载。
+
+P05/P06 实验脚本和汇总指标见 `models/gesture/experimental/`，本轮附带约 390 KB 的 P06 自定义 MLP 权重。逐帧 JSONL、prepared 和 parity 数据未上传。详见 [工作报告](工作报告.md) 及实验目录 README。
 
 ## 成员 C 联调顺序
 

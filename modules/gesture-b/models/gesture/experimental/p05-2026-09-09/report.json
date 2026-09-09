@@ -1,0 +1,586 @@
+{
+  "status": "exploratory-validation-only",
+  "split": {
+    "train": [
+      "P01",
+      "P02",
+      "P05"
+    ],
+    "validation": [
+      "P03"
+    ],
+    "testNotEvaluated": [
+      "P04"
+    ]
+  },
+  "sampleCounts": {
+    "train": 2521,
+    "validation": 736
+  },
+  "datasetSha256": "a643a379791ea4fa7dd603611651b2cfc8393cc89a04b701c972a4cb7b0f2b61",
+  "seed": 42,
+  "l2": 0,
+  "learningRate": 0.001,
+  "batchSize": 64,
+  "maxEpochs": 250,
+  "patience": 25,
+  "bestEpoch": 1,
+  "epochsRun": 26,
+  "history": [
+    {
+      "epoch": 1,
+      "validationLoss": 1.1470432200007972
+    },
+    {
+      "epoch": 2,
+      "validationLoss": 1.3148095562740167
+    },
+    {
+      "epoch": 3,
+      "validationLoss": 1.4159774045591142
+    },
+    {
+      "epoch": 4,
+      "validationLoss": 1.4941766791095445
+    },
+    {
+      "epoch": 5,
+      "validationLoss": 1.600951585093146
+    },
+    {
+      "epoch": 6,
+      "validationLoss": 1.6155889904227665
+    },
+    {
+      "epoch": 7,
+      "validationLoss": 1.6845214491413334
+    },
+    {
+      "epoch": 8,
+      "validationLoss": 1.7359740273200013
+    },
+    {
+      "epoch": 9,
+      "validationLoss": 1.785289852278572
+    },
+    {
+      "epoch": 10,
+      "validationLoss": 1.8230887099924662
+    },
+    {
+      "epoch": 11,
+      "validationLoss": 1.8508333844323401
+    },
+    {
+      "epoch": 12,
+      "validationLoss": 1.911817382518381
+    },
+    {
+      "epoch": 13,
+      "validationLoss": 1.93296024791997
+    },
+    {
+      "epoch": 14,
+      "validationLoss": 1.9579012197774768
+    },
+    {
+      "epoch": 15,
+      "validationLoss": 1.9840086928627663
+    },
+    {
+      "epoch": 16,
+      "validationLoss": 2.0059857847688285
+    },
+    {
+      "epoch": 17,
+      "validationLoss": 2.0300718546548904
+    },
+    {
+      "epoch": 18,
+      "validationLoss": 2.0535816682247643
+    },
+    {
+      "epoch": 19,
+      "validationLoss": 2.0756836106640217
+    },
+    {
+      "epoch": 20,
+      "validationLoss": 2.0937173719550186
+    },
+    {
+      "epoch": 21,
+      "validationLoss": 2.110928776065237
+    },
+    {
+      "epoch": 22,
+      "validationLoss": 2.1367300619264724
+    },
+    {
+      "epoch": 23,
+      "validationLoss": 2.1532960410717368
+    },
+    {
+      "epoch": 24,
+      "validationLoss": 2.165000638914443
+    },
+    {
+      "epoch": 25,
+      "validationLoss": 2.192565775402096
+    },
+    {
+      "epoch": 26,
+      "validationLoss": 2.2116148320362887
+    }
+  ],
+  "validation": {
+    "0.7": {
+      "labels": [
+        "open_palm",
+        "fist",
+        "point",
+        "pinch",
+        "victory",
+        "None"
+      ],
+      "confusionMatrix": [
+        [
+          98,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          16,
+          0,
+          0,
+          0,
+          82
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          98
+        ],
+        [
+          0,
+          0,
+          0,
+          98,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          72,
+          26
+        ],
+        [
+          0,
+          0,
+          0,
+          7,
+          0,
+          238
+        ]
+      ],
+      "macroF1": 0.6296761249377459,
+      "coreGestureMacroF1": 0.6176403354325415,
+      "accuracy": 0.7092391304347826,
+      "perClass": [
+        {
+          "label": "open_palm",
+          "precision": 1.0,
+          "recall": 0.98989898989899,
+          "f1": 0.9949238578680203,
+          "support": 99
+        },
+        {
+          "label": "fist",
+          "precision": 1.0,
+          "recall": 0.16326530612244897,
+          "f1": 0.2807017543859649,
+          "support": 98
+        },
+        {
+          "label": "point",
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 98
+        },
+        {
+          "label": "pinch",
+          "precision": 0.9333333333333333,
+          "recall": 1.0,
+          "f1": 0.9655172413793104,
+          "support": 98
+        },
+        {
+          "label": "victory",
+          "precision": 1.0,
+          "recall": 0.7346938775510204,
+          "f1": 0.8470588235294119,
+          "support": 98
+        },
+        {
+          "label": "None",
+          "precision": 0.5348314606741573,
+          "recall": 0.9714285714285714,
+          "f1": 0.6898550724637682,
+          "support": 245
+        }
+      ],
+      "confidenceThreshold": 0.7,
+      "noneFalsePositiveCount": 7,
+      "noneSupport": 245,
+      "noneFalsePositiveRate": 0.02857142857142857
+    },
+    "0.75": {
+      "labels": [
+        "open_palm",
+        "fist",
+        "point",
+        "pinch",
+        "victory",
+        "None"
+      ],
+      "confusionMatrix": [
+        [
+          80,
+          0,
+          0,
+          0,
+          0,
+          19
+        ],
+        [
+          0,
+          11,
+          0,
+          0,
+          0,
+          87
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          98
+        ],
+        [
+          0,
+          0,
+          0,
+          98,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          63,
+          35
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          245
+        ]
+      ],
+      "macroF1": 0.5917419902929075,
+      "coreGestureMacroF1": 0.5756596613281694,
+      "accuracy": 0.6752717391304348,
+      "perClass": [
+        {
+          "label": "open_palm",
+          "precision": 1.0,
+          "recall": 0.8080808080808081,
+          "f1": 0.893854748603352,
+          "support": 99
+        },
+        {
+          "label": "fist",
+          "precision": 1.0,
+          "recall": 0.11224489795918367,
+          "f1": 0.20183486238532108,
+          "support": 98
+        },
+        {
+          "label": "point",
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 98
+        },
+        {
+          "label": "pinch",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 98
+        },
+        {
+          "label": "victory",
+          "precision": 1.0,
+          "recall": 0.6428571428571429,
+          "f1": 0.782608695652174,
+          "support": 98
+        },
+        {
+          "label": "None",
+          "precision": 0.506198347107438,
+          "recall": 1.0,
+          "f1": 0.6721536351165981,
+          "support": 245
+        }
+      ],
+      "confidenceThreshold": 0.75,
+      "noneFalsePositiveCount": 0,
+      "noneSupport": 245,
+      "noneFalsePositiveRate": 0.0
+    }
+  },
+  "train": {
+    "0.7": {
+      "labels": [
+        "open_palm",
+        "fist",
+        "point",
+        "pinch",
+        "victory",
+        "None"
+      ],
+      "confusionMatrix": [
+        [
+          338,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          312,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          231,
+          0,
+          0,
+          101
+        ],
+        [
+          0,
+          0,
+          0,
+          283,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          288,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          961
+        ]
+      ],
+      "macroF1": 0.9591975887179572,
+      "coreGestureMacroF1": 0.9616775005502187,
+      "accuracy": 0.957159857199524,
+      "perClass": [
+        {
+          "label": "open_palm",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 338
+        },
+        {
+          "label": "fist",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 312
+        },
+        {
+          "label": "point",
+          "precision": 1.0,
+          "recall": 0.6957831325301205,
+          "f1": 0.8206039076376554,
+          "support": 332
+        },
+        {
+          "label": "pinch",
+          "precision": 1.0,
+          "recall": 0.9758620689655172,
+          "f1": 0.987783595113438,
+          "support": 290
+        },
+        {
+          "label": "victory",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 288
+        },
+        {
+          "label": "None",
+          "precision": 0.8989710009354537,
+          "recall": 1.0,
+          "f1": 0.9467980295566503,
+          "support": 961
+        }
+      ],
+      "confidenceThreshold": 0.7,
+      "noneFalsePositiveCount": 0,
+      "noneSupport": 961,
+      "noneFalsePositiveRate": 0.0
+    },
+    "0.75": {
+      "labels": [
+        "open_palm",
+        "fist",
+        "point",
+        "pinch",
+        "victory",
+        "None"
+      ],
+      "confusionMatrix": [
+        [
+          338,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          312,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          153,
+          0,
+          0,
+          179
+        ],
+        [
+          0,
+          0,
+          0,
+          251,
+          0,
+          39
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          288,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          961
+        ]
+      ],
+      "macroF1": 0.9094949919314895,
+      "coreGestureMacroF1": 0.9117678220934884,
+      "accuracy": 0.9135263784212614,
+      "perClass": [
+        {
+          "label": "open_palm",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 338
+        },
+        {
+          "label": "fist",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 312
+        },
+        {
+          "label": "point",
+          "precision": 1.0,
+          "recall": 0.4608433734939759,
+          "f1": 0.6309278350515465,
+          "support": 332
+        },
+        {
+          "label": "pinch",
+          "precision": 1.0,
+          "recall": 0.8655172413793103,
+          "f1": 0.9279112754158964,
+          "support": 290
+        },
+        {
+          "label": "victory",
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 288
+        },
+        {
+          "label": "None",
+          "precision": 0.81509754028838,
+          "recall": 1.0,
+          "f1": 0.8981308411214953,
+          "support": 961
+        }
+      ],
+      "confidenceThreshold": 0.75,
+      "noneFalsePositiveCount": 0,
+      "noneSupport": 961,
+      "noneFalsePositiveRate": 0.0
+    }
+  },
+  "endToEndP95Ms": null,
+  "falseTriggersPerMinute": null,
+  "note": "Retrained from the same random seed, not warm-started. P03 was reused for model selection; no final independent-test claim. Original labels and out-of-frame samples retained."
+}

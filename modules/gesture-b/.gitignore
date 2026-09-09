@@ -4,6 +4,7 @@ node_modules/
 !.env.example
 *.jsonl
 **/prepared.json
+**/parity.json
 **/baseline-snapshot/
 work/*
 !work/.gitkeep
