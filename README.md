@@ -75,7 +75,7 @@ ASCEND_API_BASE_URL=http://127.0.0.1:8010 \
 uvicorn server.app.main:app --port 8000
 ```
 
-项目后端会拒绝基础模型或旧适配器，只接受 `diffusers-lora` 与当前适配器修订
+项目后端只接受 `diffusers-lora` 与当前适配器修订
 `01add392…b6898c`。背景结果会登记为待审核场景资产；人物结果会被明确标记为 `unrigged`
 审核图。前者需通过中央留白和污染检查，后者必须完成透明分件和关节点标定，才能进入舞台。
 
@@ -87,7 +87,11 @@ uvicorn server.app.main:app --port 8000
 提示词模板、断电恢复和下载方式见 [`remote_server/longcat_deploy/API使用说明.md`](remote_server/longcat_deploy/API使用说明.md)。
 服务默认只监听服务器 `127.0.0.1:8010`，不应直接暴露在公网。
 
-仓库不保存 `KeyPair-2133.pem`、模型权重、虚拟环境、缓存和生成结果。LongCat-Image 已在 2 × Ascend 910B3 上完成 BF16、50 steps、guidance 4.0、TP=2 的真实推理验证；后续微调不得覆盖这一稳定部署。
+下一阶段的推理加速实验顺序、统一提示词、停止条件与交接提示词见
+[`docs/05_下一窗口先读_昇腾LongCat推理加速交接.md`](docs/05_下一窗口先读_昇腾LongCat推理加速交接.md)。
+
+仓库不保存 `KeyPair-2133.pem`、模型权重、虚拟环境或运行缓存。当前公开调用链固定为最终
+LongCat LoRA：单卡 Ascend 910B3、BF16、50 steps、guidance 4.0、adapter scale 0.8。
 
 ## 协作边界
 

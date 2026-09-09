@@ -1,0 +1,19 @@
+{
+  "taskId": "e98a7edc66454e42a7a39f366d5df84f",
+  "engine": "diffusers-lora",
+  "model": "/home/ma-user/work/longcat_deploy/models/LongCat-Image",
+  "adapter": "/home/ma-user/work/longcat_lora/outputs/mvp_1024_r16/adapter-final",
+  "adapterRevision": "01add3926eeb1cda1bbe5fcc4c6a61f6502a38cb2411633934202243c0b6898c",
+  "adapterScale": 0.8,
+  "resolvedPrompt": "哪吒少年武将，双丸子头，严格左侧身完整全身，左手乾坤圈，右手火尖枪，四肢分离，道具不遮挡身体，纯暖白背景，无文字. piying_china_style, 中国传统皮影人物，严格九十度纯侧身，仅一只眼睛可见，鼻梁和下巴形成清楚的侧面剪影，非正面，非三分之四侧脸，traditional Chinese shadow-puppet leather cutout, full body strict 90-degree side profile, exactly one eye visible, clear nose and chin silhouette, head-to-toe visible, arms and legs clearly separated from torso, visible movable joints, clean silhouette, perforated translucent leather, hand-cut engraved patterns, red gold black and muted teal palette, flat colors, plain warm ivory background, centered single character, no text",
+  "resolvedNegativePrompt": "photorealistic, realistic person, stage photography, theater stage, proscenium, curtain, audience, performer, human figure, large central shape, blank silhouette, placeholder, mask, cutout hole, circular frame, photographic architecture, 3d render, glossy plastic, modern clothing, ordinary digital illustration, front view, front-facing pose, three-quarter view, symmetrical face, both eyes visible, cropped body, close-up, missing limb, extra limb, fused limbs, arms touching torso, overlapping legs, hidden hands, hidden feet, malformed anatomy, duplicate body, floating weapon, blurry edge, low contrast, busy background, central obstruction, text, letters, subtitle, logo, watermark, pseudo-text, 写实人物，舞台摄影，现代服饰，普通插画，正面，三分之四侧脸，对称正脸，双眼同时可见，主体裁切，缺肢，多肢，四肢粘连，手臂贴躯干，腿部重叠，手脚遮挡，复杂背景，中央被遮挡，文字，伪文字，水印",
+  "seed": 3407,
+  "width": 1024,
+  "height": 1024,
+  "steps": 50,
+  "guidanceScale": 4.0,
+  "generationSeconds": 86.71504164102953,
+  "imagePath": "/home/ma-user/work/longcat_deploy/api_state_lora/outputs/e98a7edc66454e42a7a39f366d5df84f/image.png",
+  "imageBytes": 1372081,
+  "imageSha256": "2317d215554b197f03603bfe1414583c9918688fd3f9df60804a13026255aa9d"
+}

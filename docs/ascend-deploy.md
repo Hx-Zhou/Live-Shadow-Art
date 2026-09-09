@@ -33,7 +33,8 @@ LoRA while PID 1 remained alive.
 
 `server/app/generation/ascend_provider.py` now performs the complete application-side exchange:
 health/version validation, queue submission, status polling, PNG download and asset registration.
-It refuses `omni`, a missing adapter revision or any revision other than the selected final LoRA.
+It refuses every non-LoRA engine, a missing adapter revision or any revision other than the selected
+final LoRA.
 The public project endpoint schedules this work in a FastAPI background task, returns HTTP 202 with
 a local task ID immediately, and exposes progress through `/api/tasks/{task_id}`.
 

@@ -124,14 +124,14 @@ curl -H "Authorization: Bearer $LONGCAT_API_TOKEN" \
   http://127.0.0.1:8010/api/v1/tasks/任务编号/metadata
 ```
 
-状态依次为 `queued`、`running`、`succeeded` 或 `failed`。由于当前 TP=2 会独占两张 NPU，
-worker 有意串行执行任务；队列最多保留 8 个未完成任务，满载时返回 HTTP 429。
+状态依次为 `queued`、`running`、`succeeded` 或 `failed`。最终 LoRA worker 使用一张 NPU，
+并有意串行执行任务；队列最多保留 8 个未完成任务，满载时返回 HTTP 429。
 
 ## 5. 参数边界与提示词
 
 - 宽高必须是 16 的倍数，单图像素数不能超过 `1024 × 1024`。
 - 默认人物尺寸为 `1024 × 1024`，场景为 `1024 × 576`。
-- 已验证默认值为 BF16、50 steps、guidance 4.0、TP=2。
+- 已验证默认值为单卡 BF16、50 steps、guidance 4.0、adapter scale 0.8。
 - `applyStyleTemplate=true` 时，服务器会追加 `piying_china_style`、皮革镂刻、平面色彩、
   侧身全身/中央留白等约束，并使用包含“写实人物、舞台摄影、现代服饰、普通插画、伪文字”
   的负面提示词。调用方提供的 `negativePrompt` 会与服务器模板合并，不会覆盖模板。
@@ -140,21 +140,21 @@ worker 有意串行执行任务；队列最多保留 8 个未完成任务，满�
 
 ## 6. 运行状态边界
 
-- `omni` 引擎及其 BF16/TP=2 配置已在 30/30 正式批次上验证；API 封装也已完成
-  `HTTP → SQLite 队列 → NPU worker → 图片/元数据下载` 的 512×512、2 steps 端到端冒烟，
-  下载文件与元数据 SHA-256 一致。
 - `diffusers-lora` 引擎已用最终适配器完成真实 API 验证：单卡 Ascend 910B3、BF16、
   adapter scale `0.8`、1024×1024、50 steps、guidance `4.0`。关闭不必要的 VAE
   slicing/tiling 后，模型冷启动 `29.67 s`，新进程首图（含图编译/预热）`47.79 s`，
   常驻服务第二张稳态生成 `26.45 s`。
+- 2026-09-09 真实关机再开机复测中，冷文件缓存下模型加载 `90.28 s`，首图 `86.72 s`，
+  同进程第二张 `26.47 s`。两次 seed `3407` 的图片 SHA-256 相同。课堂演示必须预留约
+  3 分钟完成自动恢复和首图预热，稳态指标不能用冷启动时间代替。
 - 服务器私有 `api.env` 已固定最终适配器目录、哈希、强度、单卡设备，以及隔离的
   Diffusers/PEFT Python 路径；该文件不进入 Git。
-- `health` 同时公开 `adapterRevision` 和 `adapterScale` 供项目后端校验。应用侧会拒绝基础
-  `omni` 引擎、缺失版本号或非最终哈希，避免服务器重启后静默退回旧模型。
+- `health` 同时公开 `adapterRevision` 和 `adapterScale` 供项目后端校验。应用侧会拒绝任何
+  非 LoRA 引擎、缺失版本号或非最终哈希。
 - 已验证的 LoRA 1024 配置将 `LONGCAT_API_VAE_SLICING` 和 `LONGCAT_API_VAE_TILING`
   都设为 `0`；只有更高分辨率或显存不足时才按单项实验重新启用。
 - 人物模板强化了“90°纯侧身、仅一只眼可见、禁止正面/三分之四视角”。生成模型仍可能
   偶发重复道具，课程演示应使用验收过的 seed，或对失败结果重试，不能假定每次完全遵循。
 - 背景模板已改为“景物限制在左右和下边缘、中央连续宣纸留白”，同 seed 实测消除了完整
   摄影式戏台和巨大中央占位轮廓，但仍出现过边缘小人物，因此背景结果必须审核后再进入演示缓存。
-- vLLM-Omni 当前仅承担基础模型推理，不参与 LoRA 训练，也不宣称支持动态挂载本项目 LoRA。
+- 当前 API 运行时不提供基础模型选择，也不提供动态切换适配器的入口。

@@ -13,8 +13,8 @@ run_dir="${state_dir}/run"
 host="${LONGCAT_API_HOST:-127.0.0.1}"
 port="${LONGCAT_API_PORT:-8010}"
 timeout_seconds="${LONGCAT_API_STARTUP_TIMEOUT:-360}"
-expected_engine="${LONGCAT_API_ENGINE:-diffusers-lora}"
-expected_revision="${LONGCAT_API_ADAPTER_REVISION:-}"
+expected_engine="diffusers-lora"
+expected_revision="${LONGCAT_API_ADAPTER_REVISION:-01add3926eeb1cda1bbe5fcc4c6a61f6502a38cb2411633934202243c0b6898c}"
 health_url="http://${host}:${port}/health"
 
 if [[ ! -d "${LONGCAT_API_MODEL_DIR:-${deploy_root}/models/LongCat-Image}" ]]; then

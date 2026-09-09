@@ -29,9 +29,6 @@ class Settings(BaseModel):
   )
   ascend_api_steps: int = Field(default=50, alias="ASCEND_API_STEPS")
   ascend_api_guidance_scale: float = Field(default=4.0, alias="ASCEND_API_GUIDANCE_SCALE")
-  ascend_api_required_engine: str = Field(
-    default="diffusers-lora", alias="ASCEND_API_REQUIRED_ENGINE"
-  )
   ascend_api_required_adapter_revision: str = Field(
     default=CURRENT_LONGCAT_LORA_REVISION,
     alias="ASCEND_API_REQUIRED_ADAPTER_REVISION",
@@ -56,9 +53,6 @@ class Settings(BaseModel):
       ),
       ASCEND_API_STEPS=int(os.getenv("ASCEND_API_STEPS", "50")),
       ASCEND_API_GUIDANCE_SCALE=float(os.getenv("ASCEND_API_GUIDANCE_SCALE", "4.0")),
-      ASCEND_API_REQUIRED_ENGINE=os.getenv(
-        "ASCEND_API_REQUIRED_ENGINE", "diffusers-lora"
-      ),
       ASCEND_API_REQUIRED_ADAPTER_REVISION=os.getenv(
         "ASCEND_API_REQUIRED_ADAPTER_REVISION", CURRENT_LONGCAT_LORA_REVISION
       ),

@@ -86,10 +86,9 @@ class AscendGenerationProvider:
         f"LongCat LoRA API is unavailable: {error}. Run scripts/connect-longcat-api.sh first."
       )
     engine = str(health.get("engine", ""))
-    if engine != self.settings.ascend_api_required_engine:
+    if engine != "diffusers-lora":
       raise GenerationProviderUnavailable(
-        f"Refusing remote engine {engine!r}; expected "
-        f"{self.settings.ascend_api_required_engine!r}."
+        f"Refusing remote engine {engine!r}; expected 'diffusers-lora'."
       )
     revision = str(health.get("adapterRevision", ""))
     expected = self.settings.ascend_api_required_adapter_revision

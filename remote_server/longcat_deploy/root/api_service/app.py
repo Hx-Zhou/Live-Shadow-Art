@@ -20,7 +20,7 @@ store.initialize()
 app = FastAPI(
     title="LongCat-Image Ascend API",
     version="0.1.0",
-    description="Queue-based LongCat-Image inference API for the remote Ascend 910B3 host.",
+    description="Queue-based final LongCat LoRA API for the remote Ascend 910B3 host.",
 )
 
 

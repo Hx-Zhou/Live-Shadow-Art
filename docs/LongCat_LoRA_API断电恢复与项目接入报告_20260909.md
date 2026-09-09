@@ -4,8 +4,7 @@
 
 ## 1. 最终结论
 
-- 服务器当前运行的是最终皮影 LoRA，而不是基础 `omni` 引擎：
-  `engine=diffusers-lora`、adapter scale `0.8`。
+- 服务器 API 只允许最终皮影 LoRA：`engine=diffusers-lora`、adapter scale `0.8`。
 - 最终权重文件 `adapter_model.safetensors` 的 SHA-256 为
   `01add3926eeb1cda1bbe5fcc4c6a61f6502a38cb2411633934202243c0b6898c`。
 - 模型、LoRA、隔离 Python 依赖、API 代码、私有配置、队列数据库和结果均位于持久盘
@@ -52,7 +51,7 @@ known-hosts 文件，以避免 OpenSSH 因旧指纹禁止端口转发。这与�
 `server/app/generation/ascend_provider.py` 的一次调用流程为：
 
 1. 请求远端 `/health`。
-2. 强制核验引擎为 `diffusers-lora`，适配器哈希为本轮最终哈希；基础模型、旧 LoRA 或缺失
+2. 强制核验引擎为 `diffusers-lora`，适配器哈希为本轮最终哈希；其他引擎、旧 LoRA 或缺失
    版本号都会被拒绝。
 3. 将用户的 `kind`、`prompt`、`negativePrompt`、`seed` 映射到远端队列，并固定已验证的
    50 steps、guidance 4.0、服务器风格模板开启。
@@ -123,6 +122,7 @@ uvicorn server.app.main:app --port 8000
 | 验证项 | 结果 |
 |---|---|
 | 服务器重建后持久盘保留模型、LoRA、API 配置 | 已验证 |
+| 2026-09-09 再次开机后自动清理陈旧 PID 并恢复 API | 已验证 |
 | 最终 LoRA 权重 SHA-256 与训练报告一致 | 已验证 |
 | API 健康信息公开 adapter revision 与 scale | 已验证 |
 | 完全停止 API 后由 `ensure_api.sh` 恢复 | 已验证 |
@@ -134,10 +134,39 @@ uvicorn server.app.main:app --port 8000
 | Python 源码编译与 Shell 语法 | 已验证 |
 | 仓库 schema/asset contract 检查 | 已验证 |
 
+### 6.1 本次真实关机再开机复测
+
+2026-09-09 服务器因按需租用关机，重新开机后没有 NPU 进程。同步 LoRA-only API 代码后，
+`ensure_api.sh` 自动识别并丢弃断电遗留的 worker/API PID 文件，随后恢复服务。仓库
+`scripts/connect-longcat-api.sh` 再次执行时识别到服务已经就绪，并成功建立本地 8010 隧道。
+
+固定请求：哪吒少年武将，1024×1024、BF16、50 steps、guidance 4.0、seed `3407`、LoRA
+scale `0.8`。提示词模板保持开启。
+
+| 项目 | 开机后首次 | 同进程热态 |
+|---|---:|---:|
+| task ID | `e98a7edc66454e42a7a39f366d5df84f` | `d026e32bfa6344ccb0ebb9af64692325` |
+| 模型加载 | `90.28 s` | 已常驻 |
+| 单图生成 | `86.72 s` | `26.47 s` |
+| 图片字节数 | 1,372,081 | 1,372,081 |
+| 图片 SHA-256 | `2317d215…55aa9d` | `2317d215…55aa9d` |
+
+两张图逐字节一致，证明断电恢复后的最终 LoRA、固定 seed 和提示词模板没有漂移。开机后首次
+加载和首图明显受冷文件缓存、NPU 图编译影响，不能用来代表稳定态吞吐；课堂演示前应先执行
+一次预热。证据：
+
+- `evidence/longcat-lora-api-post-restart-cold-20260909.json`
+- `evidence/longcat-lora-api-post-restart-warm-20260909.json`
+- `evidence/longcat-lora-api-post-restart-seed3407-20260909.png`
+
+![断电恢复后最终 LoRA 固定种子验收图](evidence/longcat-lora-api-post-restart-seed3407-20260909.png)
+
 ## 7. 回滚方式
 
 - 服务器更新前文件备份位于：
   `/home/ma-user/work/longcat_deploy/api_state_lora/deploy_backups/20260909-restart-safe-api/`。
+- 2026-09-09 LoRA-only 收敛前的 6 个运行文件另存于：
+  `/home/ma-user/work/longcat_deploy/backups/lora_only_before_20260909_1722/`。
 - 服务端可先执行 `stop_api.sh`，恢复该目录中的对应文件，再执行 `start_api.sh`。
 - 项目应用出现网络或模型问题时，将 `PROVIDER` 改为 `cache` 即可回到已审核的课堂演示资源。
 - 本次没有覆盖模型权重、LoRA 权重、训练输出或既有正式生成结果。

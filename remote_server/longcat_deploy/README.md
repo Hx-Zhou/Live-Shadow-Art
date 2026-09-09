@@ -4,7 +4,7 @@
 - 来源路径：`/home/ma-user/work/longcat_deploy`
 - 快照日期：2026-09-08（Asia/Shanghai）
 - 运行硬件：2 × Ascend 910B3
-- 已验证推理基线：BF16、50 steps、guidance 4.0、TP=2
+- 当前 API：最终 LoRA，单卡 BF16、50 steps、guidance 4.0、adapter scale 0.8
 
 这个快照用于记录远端服务器的实际代码及兼容修改。它不包含约 29GB 的 LongCat-Image 模型，也不包含 CANN、Python 虚拟环境、运行缓存或生成图片。
 
@@ -17,3 +17,6 @@
 SSH 隧道访问；不要把 SSH 私钥、API 令牌或模型权重提交到仓库。
 
 上游源码不重复镜像到本仓库。应检出 `UPSTREAM_VERSIONS.md` 指定的提交，然后依次应用 `patches/` 中的补丁。
+
+`root/api_service/` 的生产运行时只保留 `diffusers-lora`。仓库中较早的 vLLM-Omni 部署与批量
+验证脚本仅用于复现实验历史，不是当前 API 的可选调用引擎。
