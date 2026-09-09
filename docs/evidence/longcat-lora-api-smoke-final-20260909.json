@@ -1,0 +1,18 @@
+{
+  "taskId": "54bdaefe9b294ee29d5b9546df165b6d",
+  "engine": "diffusers-lora",
+  "model": "/home/ma-user/work/longcat_deploy/models/LongCat-Image",
+  "adapter": "/home/ma-user/work/longcat_lora/outputs/mvp_1024_r16/adapter-final",
+  "resolvedPrompt": "江南水乡夜景，远景屋檐和拱桥，中央水面留出宽阔角色表演区. piying_china_style, traditional Chinese shadow-puppet scenery backdrop only, flat planar non-photographic hand-cut paper and translucent leather composition, red gold black and muted teal palette, scenery restricted to the outer left edge, outer right edge and lower edge, the central 45 percent is continuous plain warm ivory paper without any boundary, object or shape, clear negative space for later character compositing, no central silhouette, no placeholder, no mask, no cutout hole, no theater stage, no proscenium, no curtain, no audience, no performer, no human figure, no text, flat 2D graphic shapes, strong warm backlight",
+  "resolvedNegativePrompt": "现代建筑，人物，文字，水印, photorealistic, realistic person, stage photography, theater stage, proscenium, curtain, audience, performer, human figure, large central shape, blank silhouette, placeholder, mask, cutout hole, circular frame, photographic architecture, 3d render, glossy plastic, modern clothing, ordinary digital illustration, front view, front-facing pose, three-quarter view, symmetrical face, both eyes visible, cropped body, close-up, missing limb, extra limb, fused limbs, arms touching torso, overlapping legs, hidden hands, hidden feet, malformed anatomy, duplicate body, floating weapon, blurry edge, low contrast, busy background, central obstruction, text, letters, subtitle, logo, watermark, pseudo-text, 写实人物，舞台摄影，现代服饰，普通插画，正面，三分之四侧脸，对称正脸，双眼同时可见，主体裁切，缺肢，多肢，四肢粘连，手臂贴躯干，腿部重叠，手脚遮挡，复杂背景，中央被遮挡，文字，伪文字，水印",
+  "seed": 2026090901,
+  "width": 1024,
+  "height": 576,
+  "steps": 50,
+  "guidanceScale": 4.0,
+  "generationSeconds": 38.51028094702633,
+  "imagePath": "/home/ma-user/work/longcat_deploy/api_state_lora/outputs/54bdaefe9b294ee29d5b9546df165b6d/image.png",
+  "imageBytes": 939527,
+  "imageSha256": "3cecf6916e574f7741dfc6d7df35519bbc307af444446f638b722002ed658843",
+  "adapterScale": 0.8
+}

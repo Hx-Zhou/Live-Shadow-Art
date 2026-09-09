@@ -53,15 +53,38 @@ PROVIDER=mock uvicorn server.app.main:app --reload --port 8000
 ```bash
 PROVIDER=mock    # 固定 Mock 结果，适合前端开发
 PROVIDER=cache   # 从已审核角色/背景资产读取
-PROVIDER=ascend  # 预留昇腾推理接入点
+PROVIDER=ascend  # 调用远端最终 LongCat LoRA，并把结果登记到 assets
 ```
+
+### 调用最终 LoRA
+
+先在华为云控制台开启 ModelArts 实例。实例处于关机状态时，任何本地程序都无法把它开机；开机后，
+在仓库根目录运行下面的一键连接脚本：
+
+```bash
+./scripts/connect-longcat-api.sh /绝对路径/KeyPair-2133.pem
+```
+
+脚本会先在服务器持久盘上执行幂等恢复：核对模型与最终 LoRA、清理断电留下的陈旧 PID、启动
+worker/API、等待模型就绪，然后建立本机 `127.0.0.1:8010` 的 SSH 隧道。保持该终端运行，
+在另一终端启动项目后端：
+
+```bash
+PROVIDER=ascend \
+ASCEND_API_BASE_URL=http://127.0.0.1:8010 \
+uvicorn server.app.main:app --port 8000
+```
+
+项目后端会拒绝基础模型或旧适配器，只接受 `diffusers-lora` 与当前适配器修订
+`01add392…b6898c`。背景结果会登记为待审核场景资产；人物结果会被明确标记为 `unrigged`
+审核图。前者需通过中央留白和污染检查，后者必须完成透明分件和关节点标定，才能进入舞台。
 
 ## 远端昇腾服务器代码
 
 服务器实际运行代码位于 [`remote_server/`](remote_server/README.md)。这是从华为云 ModelArts 服务器 `/home/ma-user/work/longcat_deploy` 获取的代码快照，运行与维护需要使用项目持有者保管的 SSH 私钥访问服务器。
 
-远端模型已封装为单 worker 队列式 API。组员应使用 SSH 本地端口转发访问，具体请求格式、
-提示词模板和下载方式见 [`remote_server/longcat_deploy/API使用说明.md`](remote_server/longcat_deploy/API使用说明.md)。
+远端模型已封装为单 worker 队列式 API。组员应使用自动恢复式 SSH 本地端口转发访问，具体请求格式、
+提示词模板、断电恢复和下载方式见 [`remote_server/longcat_deploy/API使用说明.md`](remote_server/longcat_deploy/API使用说明.md)。
 服务默认只监听服务器 `127.0.0.1:8010`，不应直接暴露在公网。
 
 仓库不保存 `KeyPair-2133.pem`、模型权重、虚拟环境、缓存和生成结果。LongCat-Image 已在 2 × Ascend 910B3 上完成 BF16、50 steps、guidance 4.0、TP=2 的真实推理验证；后续微调不得覆盖这一稳定部署。

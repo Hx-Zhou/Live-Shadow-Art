@@ -10,6 +10,7 @@
 
 ```bash
 ssh -o StrictHostKeyChecking=no -i KeyPair-2133.pem \
+  -o UserKnownHostsFile=/dev/null \
   ma-user@dev-modelarts.cn-southwest-2.huaweicloud.com -p 32584
 ```
 

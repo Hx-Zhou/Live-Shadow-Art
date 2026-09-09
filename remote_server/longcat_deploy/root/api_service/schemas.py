@@ -60,8 +60,9 @@ class HealthResponse(APIModel):
     model: str
     model_revision: str | None = Field(alias="modelRevision")
     adapter: str | None
+    adapter_revision: str | None = Field(alias="adapterRevision")
+    adapter_scale: float | None = Field(alias="adapterScale")
     worker_pid: int | None = Field(alias="workerPid")
     worker_heartbeat: str | None = Field(alias="workerHeartbeat")
     queue_depth: int = Field(alias="queueDepth")
     error: str | None = None
-

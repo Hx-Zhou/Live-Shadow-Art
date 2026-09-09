@@ -30,5 +30,5 @@ def get_generation_provider() -> GenerationProvider:
   if settings.provider == "cache":
     return CacheGenerationProvider(get_asset_repository())
   if settings.provider == "ascend":
-    return AscendGenerationProvider()
+    return AscendGenerationProvider(settings, get_asset_repository())
   return MockGenerationProvider()

@@ -21,6 +21,7 @@ class Settings:
     api_token: str | None
     engine: str
     adapter_dir: Path | None
+    adapter_revision: str | None
     adapter_scale: float
     device: str
     tensor_parallel_size: int
@@ -50,6 +51,7 @@ class Settings:
             api_token=os.getenv("LONGCAT_API_TOKEN") or None,
             engine=os.getenv("LONGCAT_API_ENGINE", "omni").strip().lower(),
             adapter_dir=Path(adapter_value) if adapter_value else None,
+            adapter_revision=os.getenv("LONGCAT_API_ADAPTER_REVISION") or None,
             adapter_scale=float(os.getenv("LONGCAT_API_ADAPTER_SCALE", "1.0")),
             device=os.getenv("LONGCAT_API_DEVICE", "npu:0"),
             tensor_parallel_size=int(os.getenv("LONGCAT_API_TP", "2")),
@@ -72,6 +74,8 @@ class Settings:
             raise ValueError("LONGCAT_API_ENGINE must be omni or diffusers-lora")
         if self.engine == "diffusers-lora" and self.adapter_dir is None:
             raise ValueError("diffusers-lora requires LONGCAT_API_ADAPTER_DIR")
+        if self.engine == "diffusers-lora" and not self.adapter_revision:
+            raise ValueError("diffusers-lora requires LONGCAT_API_ADAPTER_REVISION")
         if not 0.0 <= self.adapter_scale <= 2.0:
             raise ValueError("LONGCAT_API_ADAPTER_SCALE must be between 0 and 2")
         if min(

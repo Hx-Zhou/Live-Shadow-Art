@@ -1,0 +1,18 @@
+{
+  "taskId": "1d7d05db3a2e42999e384e97a5623970",
+  "engine": "diffusers-lora",
+  "model": "/home/ma-user/work/longcat_deploy/models/LongCat-Image",
+  "adapter": "/home/ma-user/work/longcat_lora/outputs/mvp_1024_r16/adapter-final",
+  "resolvedPrompt": "江南水乡夜景，远景屋檐和拱桥，中央水面留出宽阔角色表演区. piying_china_style, traditional Chinese shadow-puppet stage background, layered paper-cut and translucent leather silhouettes, red gold black and muted teal palette, clear foreground middle-ground and background layers, central 35 percent open for character performance, no people, no text, flat graphic shapes, strong warm backlight",
+  "resolvedNegativePrompt": "现代建筑，人物，文字，水印",
+  "seed": 2026090901,
+  "width": 1024,
+  "height": 576,
+  "steps": 50,
+  "guidanceScale": 4.0,
+  "generationSeconds": 37.714938378019724,
+  "imagePath": "/home/ma-user/work/longcat_deploy/api_state_lora/outputs/1d7d05db3a2e42999e384e97a5623970/image.png",
+  "imageBytes": 873496,
+  "imageSha256": "09633849a44722ed23a0930fc1d0bcb6c33b1c836e9f23455daa4eeda9b95309",
+  "adapterScale": 0.8
+}

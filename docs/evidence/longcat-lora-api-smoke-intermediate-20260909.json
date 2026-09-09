@@ -1,0 +1,18 @@
+{
+  "taskId": "70268cd22d804196828952fdedb5abeb",
+  "engine": "diffusers-lora",
+  "model": "/home/ma-user/work/longcat_deploy/models/LongCat-Image",
+  "adapter": "/home/ma-user/work/longcat_lora/outputs/mvp_1024_r16/adapter-final",
+  "resolvedPrompt": "江南水乡夜景，远景屋檐和拱桥，中央水面留出宽阔角色表演区. piying_china_style, traditional Chinese shadow-puppet scenery backdrop only, flat planar paper-cut composition, layered translucent leather silhouettes, red gold black and muted teal palette, clear foreground middle-ground and background layers around the outer edges, central 45 percent completely empty for character performance, no theater stage, no proscenium, no curtain, no audience, no performer, no human figure, no text, flat graphic shapes, strong warm backlight",
+  "resolvedNegativePrompt": "现代建筑，人物，文字，水印, photorealistic, realistic person, stage photography, theater stage, proscenium, curtain, audience, performer, human figure, 3d render, glossy plastic, modern clothing, ordinary digital illustration, front view, front-facing pose, three-quarter view, symmetrical face, both eyes visible, cropped body, close-up, missing limb, extra limb, fused limbs, arms touching torso, overlapping legs, hidden hands, hidden feet, malformed anatomy, duplicate body, floating weapon, blurry edge, low contrast, busy background, central obstruction, text, letters, subtitle, logo, watermark, pseudo-text, 写实人物，舞台摄影，现代服饰，普通插画，正面，三分之四侧脸，对称正脸，双眼同时可见，主体裁切，缺肢，多肢，四肢粘连，手臂贴躯干，腿部重叠，手脚遮挡，复杂背景，中央被遮挡，文字，伪文字，水印",
+  "seed": 2026090901,
+  "width": 1024,
+  "height": 576,
+  "steps": 50,
+  "guidanceScale": 4.0,
+  "generationSeconds": 37.490143142000306,
+  "imagePath": "/home/ma-user/work/longcat_deploy/api_state_lora/outputs/70268cd22d804196828952fdedb5abeb/image.png",
+  "imageBytes": 943468,
+  "imageSha256": "1707fd5070e52c1a0a9914faf8921235afcba567d4e45067cf3c2120262f7a1a",
+  "adapterScale": 0.8
+}

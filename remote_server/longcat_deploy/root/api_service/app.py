@@ -68,6 +68,8 @@ def health() -> HealthResponse:
         model=str(settings.model_dir),
         modelRevision=state.get("model_revision"),
         adapter=str(settings.adapter_dir) if settings.adapter_dir else None,
+        adapterRevision=settings.adapter_revision,
+        adapterScale=settings.adapter_scale if settings.adapter_dir else None,
         workerPid=worker_pid if worker_alive else None,
         workerHeartbeat=state.get("worker_heartbeat"),
         queueDepth=store.pending_count(),

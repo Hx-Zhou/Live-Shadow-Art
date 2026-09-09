@@ -4,7 +4,9 @@ from typing import Literal
 
 
 SHARED_NEGATIVE_PROMPT = (
-    "photorealistic, realistic person, stage photography, 3d render, glossy plastic, "
+    "photorealistic, realistic person, stage photography, theater stage, proscenium, curtain, "
+    "audience, performer, human figure, large central shape, blank silhouette, placeholder, mask, "
+    "cutout hole, circular frame, photographic architecture, 3d render, glossy plastic, "
     "modern clothing, ordinary digital illustration, front view, front-facing pose, three-quarter "
     "view, symmetrical face, both eyes visible, cropped body, close-up, "
     "missing limb, extra limb, fused limbs, arms touching torso, overlapping legs, hidden hands, "
@@ -26,10 +28,13 @@ CHARACTER_SUFFIX = (
 )
 
 BACKGROUND_SUFFIX = (
-    "piying_china_style, traditional Chinese shadow-puppet stage background, layered paper-cut and "
-    "translucent leather silhouettes, red gold black and muted teal palette, clear foreground "
-    "middle-ground and background layers, central 35 percent open for character performance, no "
-    "people, no text, flat graphic shapes, strong warm backlight"
+    "piying_china_style, traditional Chinese shadow-puppet scenery backdrop only, flat planar "
+    "non-photographic hand-cut paper and translucent leather composition, red gold black and muted "
+    "teal palette, scenery restricted to the outer left edge, outer right edge and lower edge, the "
+    "central 45 percent is continuous plain warm ivory paper without any boundary, object or shape, "
+    "clear negative space for later character compositing, no central silhouette, no placeholder, "
+    "no mask, no cutout hole, no theater stage, no proscenium, no curtain, no audience, no "
+    "performer, no human figure, no text, flat 2D graphic shapes, strong warm backlight"
 )
 
 
@@ -42,7 +47,15 @@ def resolve_prompts(
     cleaned = " ".join(prompt.split())
     if apply_style_template:
         suffix = CHARACTER_SUFFIX if kind == "character" else BACKGROUND_SUFFIX
-        if "piying_china_style" not in cleaned:
+        if suffix not in cleaned:
             cleaned = f"{cleaned}. {suffix}"
-    negative = " ".join((negative_prompt or SHARED_NEGATIVE_PROMPT).split())
+        custom_negative = " ".join((negative_prompt or "").split())
+        negative = (
+            f"{custom_negative}, {SHARED_NEGATIVE_PROMPT}"
+            if custom_negative
+            else SHARED_NEGATIVE_PROMPT
+        )
+    else:
+        negative = negative_prompt or SHARED_NEGATIVE_PROMPT
+    negative = " ".join(negative.split())
     return cleaned, negative

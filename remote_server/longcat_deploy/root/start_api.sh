@@ -3,6 +3,7 @@ set -euo pipefail
 
 deploy_root="${DEPLOY_ROOT:-/home/ma-user/work/longcat_deploy}"
 source "${deploy_root}/runtime_env.sh"
+source "${deploy_root}/process_utils.sh"
 if [[ -r "${deploy_root}/api.env" ]]; then
   # api.env is deliberately server-local and ignored by Git. It may contain the
   # team token and the selected adapter, so never copy it into the repository.
@@ -34,12 +35,23 @@ mkdir -p "${run_dir}" "${log_dir}" "${LONGCAT_API_OUTPUT_DIR}"
 worker_pid_file="${run_dir}/worker.pid"
 api_pid_file="${run_dir}/api.pid"
 
-for pid_file in "${worker_pid_file}" "${api_pid_file}"; do
-  if [[ -f "${pid_file}" ]] && kill -0 "$(<"${pid_file}")" 2>/dev/null; then
-    printf 'LongCat API is already running (pid=%s from %s)\n' "$(<"${pid_file}")" "${pid_file}" >&2
-    exit 1
+check_not_running() {
+  local name="$1"
+  local pid_file="$2"
+  local expected="$3"
+  local pid
+  if pid="$(read_service_pid "${pid_file}")" && service_pid_matches "${pid}" "${expected}"; then
+    printf '%s is already running (pid=%s)\n' "${name}" "${pid}" >&2
+    return 1
   fi
-done
+  if [[ -e "${pid_file}" ]]; then
+    printf 'Discarding stale %s PID file; no matching service owns it.\n' "${name}" >&2
+    rm -f "${pid_file}"
+  fi
+}
+
+check_not_running worker "${worker_pid_file}" "python -m api_service.worker"
+check_not_running api "${api_pid_file}" "uvicorn api_service.app:app"
 
 nohup python -m api_service.worker >> "${log_dir}/worker.log" 2>&1 &
 worker_pid=$!

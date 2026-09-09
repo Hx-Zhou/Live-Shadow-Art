@@ -10,7 +10,9 @@
 
 根目录脚本在仓库中位于 `root/`，同步回服务器时应恢复到 `/home/ma-user/work/longcat_deploy/`。`project/` 的相对目录结构保持不变。
 
-`root/api_service/`、`root/start_api.sh` 与 `root/stop_api.sh` 是远端模型的队列式 HTTP API。
+`root/api_service/`、`root/start_api.sh`、`root/stop_api.sh` 与 `root/ensure_api.sh` 是远端模型的
+队列式 HTTP API 和断电后幂等恢复入口。`root/process_utils.sh` 会校验 PID 对应的真实命令，避免
+服务器重启后因 PID 复用误伤其他进程。
 部署和调用方式见 [`API使用说明.md`](API使用说明.md)。服务默认仅监听远端回环地址，组员需通过
 SSH 隧道访问；不要把 SSH 私钥、API 令牌或模型权重提交到仓库。
 
