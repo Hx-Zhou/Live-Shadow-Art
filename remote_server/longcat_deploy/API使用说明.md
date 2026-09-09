@@ -9,8 +9,8 @@
 
 ```bash
 cd /home/ma-user/work/longcat_deploy
-# 可选：先将 api.env.example 复制为不入库的 api.env，设置团队令牌等参数。
-test ! -f ./api.env || source ./api.env
+# 可选：将 api.env.example 复制为不入库的 api.env，设置团队令牌和运行引擎。
+# start_api.sh 会自动读取这个服务器本地文件。
 bash ./start_api.sh
 ```
 
@@ -124,5 +124,14 @@ worker 有意串行执行任务；队列最多保留 8 个未完成任务，满�
 - `omni` 引擎及其 BF16/TP=2 配置已在 30/30 正式批次上验证；API 封装也已完成
   `HTTP → SQLite 队列 → NPU worker → 图片/元数据下载` 的 512×512、2 steps 端到端冒烟，
   下载文件与元数据 SHA-256 一致。
-- `diffusers-lora` 引擎的代码入口已预留，但只有最终 LoRA 适配器完成对比验证后才能启用。
+- `diffusers-lora` 引擎已用最终适配器完成真实 API 验证：单卡 Ascend 910B3、BF16、
+  adapter scale `0.8`、1024×1024、50 steps、guidance `4.0`。关闭不必要的 VAE
+  slicing/tiling 后，模型冷启动 `29.67 s`，新进程首图（含图编译/预热）`47.79 s`，
+  常驻服务第二张稳态生成 `26.45 s`。
+- `diffusers-lora` 还需要在服务器私有的 `api.env` 中设置最终适配器目录、强度、单卡设备，
+  以及 `LONGCAT_API_EXTRA_PYTHONPATH=/home/ma-user/work/longcat_lora/eval_python:/home/ma-user/work/longcat_lora/src/LongCat-Image`。
+- 已验证的 LoRA 1024 配置将 `LONGCAT_API_VAE_SLICING` 和 `LONGCAT_API_VAE_TILING`
+  都设为 `0`；只有更高分辨率或显存不足时才按单项实验重新启用。
+- 人物模板强化了“90°纯侧身、仅一只眼可见、禁止正面/三分之四视角”。生成模型仍可能
+  偶发重复道具，课程演示应使用验收过的 seed，或对失败结果重试，不能假定每次完全遵循。
 - vLLM-Omni 当前仅承担基础模型推理，不参与 LoRA 训练，也不宣称支持动态挂载本项目 LoRA。

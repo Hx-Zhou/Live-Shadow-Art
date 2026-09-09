@@ -3,6 +3,11 @@ set -euo pipefail
 
 deploy_root="${DEPLOY_ROOT:-/home/ma-user/work/longcat_deploy}"
 source "${deploy_root}/runtime_env.sh"
+if [[ -r "${deploy_root}/api.env" ]]; then
+  # api.env is deliberately server-local and ignored by Git. It may contain the
+  # team token and the selected adapter, so never copy it into the repository.
+  source "${deploy_root}/api.env"
+fi
 
 export LONGCAT_API_MODEL_DIR="${LONGCAT_API_MODEL_DIR:-${deploy_root}/models/LongCat-Image}"
 export LONGCAT_API_STATE_DIR="${LONGCAT_API_STATE_DIR:-${deploy_root}/api_state}"
@@ -16,7 +21,11 @@ export LONGCAT_API_VAE_SLICING="${LONGCAT_API_VAE_SLICING:-1}"
 export LONGCAT_API_VAE_TILING="${LONGCAT_API_VAE_TILING:-1}"
 export LONGCAT_API_HOST="${LONGCAT_API_HOST:-127.0.0.1}"
 export LONGCAT_API_PORT="${LONGCAT_API_PORT:-8010}"
-export PYTHONPATH="${deploy_root}:${PYTHONPATH:-}"
+if [[ -n "${LONGCAT_API_EXTRA_PYTHONPATH:-}" ]]; then
+  export PYTHONPATH="${LONGCAT_API_EXTRA_PYTHONPATH}:${deploy_root}:${PYTHONPATH:-}"
+else
+  export PYTHONPATH="${deploy_root}:${PYTHONPATH:-}"
+fi
 
 run_dir="${LONGCAT_API_STATE_DIR}/run"
 log_dir="${LONGCAT_API_STATE_DIR}/logs"
@@ -47,4 +56,3 @@ printf '%s\n' "${api_pid}" > "${api_pid_file}"
 printf 'api_pid=%s\nworker_pid=%s\nlisten=http://%s:%s\n' \
   "${api_pid}" "${worker_pid}" "${LONGCAT_API_HOST}" "${LONGCAT_API_PORT}"
 printf 'The API process starts quickly; /health reports ready=true after model loading completes.\n'
-

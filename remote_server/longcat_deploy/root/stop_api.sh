@@ -2,6 +2,9 @@
 set -euo pipefail
 
 deploy_root="${DEPLOY_ROOT:-/home/ma-user/work/longcat_deploy}"
+if [[ -r "${deploy_root}/api.env" ]]; then
+  source "${deploy_root}/api.env"
+fi
 state_dir="${LONGCAT_API_STATE_DIR:-${deploy_root}/api_state}"
 run_dir="${state_dir}/run"
 
@@ -36,4 +39,3 @@ stop_one() {
 # Stop accepting requests first, then let the worker finish/close its model.
 stop_one api
 stop_one worker
-

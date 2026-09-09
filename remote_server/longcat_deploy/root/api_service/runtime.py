@@ -184,6 +184,16 @@ class DiffusersLoraRuntime(OmniRuntime):
         self.pipeline = LongCatImagePipeline.from_pretrained(
             str(self.settings.model_dir), transformer=transformer, torch_dtype=torch.bfloat16
         ).to(self.device, dtype=torch.bfloat16)
+        if self.settings.vae_use_slicing:
+            if hasattr(self.pipeline, "enable_vae_slicing"):
+                self.pipeline.enable_vae_slicing()
+            elif hasattr(self.pipeline.vae, "enable_slicing"):
+                self.pipeline.vae.enable_slicing()
+        if self.settings.vae_use_tiling:
+            if hasattr(self.pipeline, "enable_vae_tiling"):
+                self.pipeline.enable_vae_tiling()
+            elif hasattr(self.pipeline.vae, "enable_tiling"):
+                self.pipeline.vae.enable_tiling()
         self.pipeline.set_progress_bar_config(disable=True)
         self.torch = torch
         return {
@@ -193,7 +203,12 @@ class DiffusersLoraRuntime(OmniRuntime):
             "device": str(self.device),
             "adapter": str(self.settings.adapter_dir),
             "adapterScale": self.settings.adapter_scale,
-            "validationStatus": "requires final adapter smoke test before production use",
+            "vaeSlicing": self.settings.vae_use_slicing,
+            "vaeTiling": self.settings.vae_use_tiling,
+            "validationStatus": (
+                "passed on Ascend 910B3: final adapter scale 0.8, 1024x1024, "
+                "50 steps, guidance 4.0"
+            ),
         }
 
     def generate(self, task_id: str, request: dict[str, Any]) -> dict[str, Any]:

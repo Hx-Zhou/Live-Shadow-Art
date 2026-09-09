@@ -13,12 +13,17 @@ set -u
 
 export VIRTUAL_ENV="${venv_dir}"
 export PATH="${venv_dir}/bin:${PATH}"
-# ModelArts has already mounted physical devices 4 and 7 and maps them to the
-# process-local logical IDs 0 and 1.  Do not set ASCEND_RT_VISIBLE_DEVICES here:
-# doing so applies a second physical-ID filter and makes logical device 0 invalid.
+# ModelArts injects the physical-device visibility list when the instance starts.
+# Preserve that current value instead of baking one server generation's card IDs
+# into the repository. Do not set ASCEND_RT_VISIBLE_DEVICES here: doing so applies
+# a second physical-ID filter and can make logical device 0 invalid.
 unset ASCEND_RT_VISIBLE_DEVICES
-export ASCEND_VISIBLE_DEVICES="${ASCEND_VISIBLE_DEVICES:-4,7}"
-export NPU_VISIBLE_DEVICES="${NPU_VISIBLE_DEVICES:-4,7}"
+if [[ -n "${ASCEND_VISIBLE_DEVICES:-}" ]]; then
+  export ASCEND_VISIBLE_DEVICES
+fi
+if [[ -n "${NPU_VISIBLE_DEVICES:-}" ]]; then
+  export NPU_VISIBLE_DEVICES
+fi
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
 export HF_HOME="${HF_HOME:-${deploy_root}/hf-cache}"
