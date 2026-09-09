@@ -1,0 +1,12 @@
+{
+  "status": "experimental_model_available_not_accepted",
+  "customModelTrained": true,
+  "validationParticipant": "P03",
+  "validationMacroF1": 0.49657013049375687,
+  "confidence": 0.7,
+  "l2": 0,
+  "productionDefault": "rule-baseline",
+  "endToEndP95Ms": null,
+  "falseTriggersPerMinute": null,
+  "stageFps": null
+}

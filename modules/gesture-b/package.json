@@ -1,0 +1,1 @@
+{"name":"shadow-play-member-b","version":"0.1.0","private":true,"type":"module","scripts":{"start":"node tools/serve.mjs","setup":"node tools/download.mjs","test":"node --test tests/*.test.mjs"}}

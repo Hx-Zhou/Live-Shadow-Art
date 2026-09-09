@@ -1,0 +1,31 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"urn:shadow-play:gesture-event:1.0",
+ "title":"Gesture SDK event v1.0",
+ "type":"object",
+ "required":["version","type","timestamp"],
+ "properties":{
+  "version":{"const":"1.0"},"type":{"enum":["gesture_control","gesture_action","gesture_status"]},
+  "timestamp":{"type":"number","minimum":0},
+  "hand":{"enum":["left","right"]},
+  "position":{"$ref":"#/$defs/position"},"direction":{"$ref":"#/$defs/direction"},
+  "confidence":{"type":"number","minimum":0,"maximum":1},
+  "confidenceKind":{"enum":["rule_score","model_probability","trajectory_rule_score"]},
+  "action":{"enum":["activate","pause","point","pinch","victory","swipe","raise"]},
+  "label":{"enum":["open_palm","fist","point","pinch","victory","None"]},
+  "status":{"enum":["tracking","lost"]},"active":{"type":"boolean"},
+  "bodyAngle":{"type":"number","minimum":-3.141592653589793,"maximum":3.141592653589793},
+  "armAngle":{"type":"number","minimum":-2.6,"maximum":2.6},
+  "pinchStrength":{"type":"number","minimum":0,"maximum":1}
+ },
+ "allOf":[
+  {"if":{"properties":{"type":{"const":"gesture_control"}}},"then":{"required":["hand","position","direction","bodyAngle","armAngle","pinchStrength","active","label","confidence"]}},
+  {"if":{"properties":{"type":{"const":"gesture_action"}}},"then":{"required":["action","confidence","confidenceKind","hand","position","direction"]}},
+  {"if":{"properties":{"type":{"const":"gesture_status"}}},"then":{"required":["status"]}}
+ ],
+ "additionalProperties":false,
+ "$defs":{
+  "position":{"type":"object","required":["x","y"],"properties":{"x":{"type":"number","minimum":0,"maximum":1},"y":{"type":"number","minimum":0,"maximum":1}},"additionalProperties":false},
+  "direction":{"type":"object","required":["x","y"],"properties":{"x":{"type":"number","minimum":-1,"maximum":1},"y":{"type":"number","minimum":-1,"maximum":1}},"additionalProperties":false}
+ }
+}
